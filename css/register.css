@@ -1,0 +1,248 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.go_login-title{
+    position: absolute;
+    left: 85%;
+    top: 5%;
+    display: inline-block;
+    text-align: right;
+}
+#main-container{
+    position: relative;
+    width: 1100px;
+    padding-bottom: 100px;
+    margin: 0 auto;
+    background: #F5FAFF;
+}
+a {
+    text-decoration: none;
+    color: #21d196;
+    transition: all .3s ease 0s;
+}
+
+button{transition: all .3s ease 0s;}
+.brand-title{
+    height: 100%;
+    display: block;
+}
+.brand-title:hover{
+    cursor: pointer;
+}
+.header{
+    padding: 20px;
+    background-color: #fff;
+    height: 30px;
+    margin-bottom: 25px;
+    box-shadow: 1px 2px 3px #dddddd !important;
+
+}
+body{
+    background:#F5FAFF ;
+}
+.step-guide{
+    width: 540px;
+    margin: 0 auto;
+    padding-top: 60px;
+}
+
+.step .number {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 30px;
+    border: 1px solid #cdcdcd;
+    text-align: center;
+    margin: 0 auto 10px;
+    font-size: 20px;
+}
+.step {
+    float: left;
+    color: #cdcdcd;
+    width: 179px;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+}
+.step-current {
+    color:  #21d196;
+    font-weight: 700;
+}
+.step-current .number {
+    border: 2px solid #21d196;
+}
+.step .line {
+    position: absolute;
+    width: 136px;
+    height: 2px;
+    background: #f2f2f2;
+    top: 21px;
+    left: 112px;
+}
+.step .line-current{
+    background: #21d196;
+}
+.reg-box {
+    width: 444px;
+    padding: 20px 0;
+    margin: 20px auto 0;
+}
+.input-container {
+    width: 444px !important;
+    position: relative;
+    height: 46px;
+}
+.clearfix{
+    zoom: 1;
+}
+.clearfix:after {
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    content: ".";
+}
+.input-container .view-input {
+    width: 100%;
+    height: 100%;
+    padding: 0 44px 0 10px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+    background: #fff;
+    line-height: 32px;
+    vertical-align: middle;
+}
+.item-input .tips-input {
+    min-height: 28px;
+    margin-top: 2px;
+    font-size: 14px
+}
+.main-box1{
+  box-shadow: 1px 2px 3px #dddddd !important;
+  background-color: #fff;
+}
+.view-input:focus, .view-input:hover{
+    outline: none;
+    border: 1px solid #21d196 !important;
+}
+.reg-box .agree {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+    position: relative;
+    padding-left: 24px;
+    cursor: pointer;
+}
+.reg-box .agree .u-agree{
+    float: left;
+}
+#eye {
+    position: absolute;
+    top: 11px;
+    right: 9px;
+    width: 24px;
+}
+
+.reg-box .agree .m-agree {
+    background: none;
+    float: left;
+    display: block;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 0;
+    top: 3px;
+    border:none;
+    border-radius: 2px;
+}
+.reg-box .agree .m-agree-ok {
+    background: #21d196;
+}
+.next-btn {
+    margin-top: 20px !important;
+    display: inline-block;
+    vertical-align: middle;
+    height: 46px;
+    line-height: 46px;
+    border-color: #21d196;
+    background-color: #21d196;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 2px;
+    border-width: 0;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+.next-btn:focus{
+    outline: none;
+}
+.next-btn:hover{
+    color: #fff !important;
+   background-color: #18b681 !important;
+   text-decoration: none;
+}
+@media (max-width: 750px) {
+    body{
+        background: #fff;
+    }
+    .header{
+        border-bottom: 1px solid #cecece;
+    }
+    #main-container{
+        width: 92% !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #fff;
+    }
+    .main-box1{
+      box-shadow: none !important;
+    }
+    .step-guide{
+        display: none;
+    }
+    .go_login-title{
+        position: relative;
+        left: 72%;
+        top: -10px !important;
+        display: inline-block;
+        text-align: right;
+    }
+}
+.step-error {
+    color: #ea3d3d !important;
+}
+.step-error .number{
+    color: #ea3d3d !important;
+    border: 2px solid #ea3d3d !important;
+}
+.line-state-error-2{
+        background: #ea3d3d !important;
+        width: 100% !important;
+}
+.step .line .line-state {
+    height: 2px;
+    background: #2c82ff;
+    position: absolute;
+    margin: 0;
+}
+.tips-input{
+    color: #ea3d3d;
+    font-size: 13px;
+}
+
+#box2 {
+    display: none;
+}
+#box3 {
+    display: none;
+}

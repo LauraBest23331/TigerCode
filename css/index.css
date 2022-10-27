@@ -1,0 +1,224 @@
+.jumbotron{
+	min-height: 1200px;
+}
+body {
+  background-color: rgb(243, 245, 247);
+}
+.ad{
+  height: 250px;
+  width: 150px;
+}
+@media (min-width: 1200px){
+	.header__description--half {
+    text-align: left !important;
+    font-size: 22px !important;
+}
+}
+@media (min-width: 1200px){
+	p {
+    font-size: 18px;
+    line-height: 150%!important;
+}
+}
+
+.content{
+    padding-top: 75px;
+}
+
+
+.my_primary-btn {
+    font-family: muli !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 16px !important;
+    text-align: center !important;
+    border-radius: 10px;
+    border: none;
+    color: #fff !important;
+    background-color: #f6c456 !important;
+    text-decoration: none;
+    padding: 16px !important;
+    width: 300px;
+}
+.my_primary-btn:hover{
+     color: #fff !important;
+    background-color: #f6c456 !important;
+    text-decoration: none;
+}
+.carousel-img{
+  height: 200px;
+}
+.main-content{
+  width: 100%;
+  
+}
+.big-title {
+  font-size: 65px;
+  font-weight: 600;
+  color: #333;
+}
+.title .text {
+  font-size: 20px;
+  color: #666;
+}
+.paragraph01{
+  background-image: url(https://static.npmjs.com/attachments/ck3uwdsg8mstodr74z4lcdmy0-bg-pro.png);
+  height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.begin-btn {
+  margin-top: 10px !important;
+}
+
+.paragraph02 {
+  margin-top: 20px;
+  
+}
+
+.carousel{
+  width: 100%;
+}
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+	
+	width: 100% !important;
+	height: 600px !important;
+}
+
+.carousel{
+	margin-top: 20px;
+	
+}
+.cart {
+  position: fixed;
+  right: 226px;
+  top: 53%;
+  width: 10px;
+  height: 1px;
+}
+.f1 {
+  border-top: 60px solid transparent;
+  border-right: 60px solid #ffba08;
+  
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid transparent;
+  width: 0;
+  position: absolute;
+  left: 0;
+  top: 120px;
+  z-index: 1;
+  animation: f-top 3s infinite linear;
+  transform-origin: right top;
+}
+.f2 {
+  border-top: 60px solid #81bc06;
+  border-right: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid transparent;
+  width: 0;
+  position: absolute;
+  left: 120px;
+  top:120px;
+  z-index: 1;
+  animation: f-top 3s infinite linear;
+  transform-origin: left top;
+}
+.f3 {
+  border-top: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 60px solid  #05a6f0;
+  border-left: 60px solid transparent;
+  width: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transform-origin: right bottom;
+  animation: f-top 3s infinite linear;
+}
+.f4 {
+  border-top: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+  border-left: 60px solid #f35325;
+  width: 0;
+  position: absolute;
+  left: 120px;
+  top: 0;
+  animation: f-top 3s infinite linear;
+  z-index: 1;
+  
+  transform-origin: left bottom;
+}
+.bang{
+  width: 10px;
+  height: 250px;
+  background-color: #18b681;
+  position: absolute;
+  top: 102px;
+  left: 177px;
+  transform: rotateZ(-30deg);
+}
+.add {
+  position: absolute;
+  top: 13px;
+  left :20px;
+  width: 30px;
+  height: 30px;
+  background-color: #05a6f0;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+}
+
+.sub {
+  position: absolute;
+  top: 54px;
+  left :20px;
+  width: 30px;
+  height: 30px;
+  background-color: #81bc06;
+  outline: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+
+}
+.btn-box {
+  background-color: #fff;
+  width: 70px;
+  height: 100px;
+  position: absolute;
+  top: 260px;
+  left :65px;
+}
+.optimization li{
+  margin-top: 5px;
+}
+@keyframes f-top{
+  0%{
+    transform: rotateZ(0deg);
+  }
+  100%{
+    transform: rotateZ(360deg)
+  }
+}
+.tiger-color{
+  color: #f6c456;
+}
+.yzui>li>blockquote{
+  font-weight: 700;
+}
+@media (max-width: 414px) {
+  .paragraph01{
+    height: 320px;
+  }
+  .paragraph02{
+    background-color: #fff;
+    margin-top: 0;
+  }
+}

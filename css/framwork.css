@@ -1,0 +1,11 @@
+.project-header {
+  width: 60%;
+  text-align: center;
+  margin: 60px auto 40px;
+}
+.header-title {
+  font-size: 42px;
+}
+.header-text {
+  color: #666;
+}

@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background:#F5FAFF ;
+}
+#main-container{
+    width: 100%;
+    margin-top: 50px;
+}
+.center-box{
+    margin: 0 auto;
+    width: 370px;
+}
+.header{
+    padding: 20px;
+    background-color: #fff;
+    height: 30px;
+    box-shadow: 1px 2px 3px #dddddd !important;
+
+}
+.brand-title{
+    height: 100%;
+    display: block;
+}
+.brand-title:hover{
+    cursor: pointer;
+}
+.login-box{
+    margin-top: 30px;
+    border-radius: 5px;
+    border: 1px solid #d8dee2;
+    background: #fff;
+    padding:20px;
+    box-sizing: border-box;
+}
+.hello-title {
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+    text-shadow: none;
+}
+.login-box label{
+    display: block !important;
+    margin-bottom: 7px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+}
+.login-box input{
+    display: block !important;
+    margin-bottom: 18px;
+}
+.login-input {
+    width: 100%;
+
+    background-color: #F5FAFF ;
+    border: none;
+    border: 1px solid rgb(225, 228, 232);
+    border-radius: 6px;
+    box-shadow: rgba(225, 228, 232, 0.2) 0px 1px 0px inset;
+    vertical-align: middle;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    background-color: rgb(232, 240, 254);
+    padding: 8px 12px;
+    outline: none;
+}
+.login-input:focus {
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    border-color: rgb(3, 102, 214);
+    outline: none;
+}
+.hello-title{
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -.5px;
+}
+.my_primary-btn {
+    font-family: muli !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 16px !important;
+    text-align: center !important;
+    border-radius: 10px;
+    border: none;
+    outline: none !important;
+    color: #fff !important;
+    background-color: #21d196 !important;
+    text-decoration: none;
+    padding: 16px !important;
+    width: 100%;
+    margin-top: 10px;
+}
+.my_primary-btn:hover{
+     color: #fff !important;
+    background-color: #18b681 !important;
+    text-decoration: none;
+}
+.my_primary-btn:focus {
+    box-shadow: 0 0 0 3px rgba(46,164,79,.4);
+}
+button {
+    
+    transition: all .3s ease 0s;
+}
+
+a {
+    text-decoration: none;
+    color: #21d196 !important;
+}
+.go_login-title{
+    position: relative;
+    left: 85%;
+    bottom: 10px;
+    display: inline-block;
+    text-align: right;
+}
+.last-title1{
+    margin-top: 5px;
+    padding: 15px 20px;
+    text-align: center;
+
+}
+.last-title2{
+    padding: 0px 20px;
+    text-align: center;
+
+}
+.last-title2 a{
+    color: #0366D6;
+
+}
+.last-title1 a{
+    color: #0366D6;
+}
+

@@ -1,0 +1,40 @@
+.main-header .par {
+  font-size: 40px;
+  text-align: center;
+}
+.main-header .text {
+  color: #666;
+}
+.main-header {
+  width: 80%;
+  margin: 60px auto 40px;
+
+}
+ .study {
+  color: #333;
+}
+.study-content {
+  padding: 0 20px;
+}
+ul li {
+  margin-top: 5px;
+  color: #666;
+}
+ol {
+  list-style-type: decimal;
+}
+
+@media (max-width: 454px) {
+  .pt-20{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .main-header{
+    margin: 15px auto 40px;
+    width: 90%;
+  }
+  .pt-5{
+    background: #fff;
+    padding-top: 5px;
+  }
+}

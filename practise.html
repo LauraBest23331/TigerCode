@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="alternate icon" class="js-site-favicon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/common.css">
+  <!-- <link rel="stylesheet" href="css/study.css"> -->
+  <link rel="stylesheet" href="css/practise.css">
+  <!-- 引入jQuery模块 -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+  <!-- 引入bootstrap.js模块 -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <title>学习路线</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          <img alt="Brand" src="images/brand.png" class="my-brand">
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav module-left">
+          <li><a href="index.html">首页 </a></li>
+          <li><a href="study.html" >学习路线</a></li>
+          <li><a href="study.html"  class="selected">在线练习<span class="sr-only"></span></a></li>
+
+          <li><a href="dowoload.html">资源下载<span class="sr-only"></span></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              加入群聊<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              
+                <li><a href="https://jq.qq.com/?_wv=1027&k=9HbSlI3Z">虎码新手村</a></li>
+                <li><a href="https://jq.qq.com/?_wv=1027&k=9HbSlI3Z">虎码官方群</a></li>
+                                
+              <!-- <li role="separator" class="divider"></li> -->
+            </ul>
+          </li>
+          <li><a href="#"><span class="sr-only">(current)</span></a></li>
+          <li><a href="#"></a></li>
+
+        </ul>
+      
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <div class="main-content">
+    <div class="container">
+      <div class="row mt-10">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 pt-20 bg-white primary-shadow study">
+            <div class="h-100">
+                <div class="top">
+                    <div class="floatleft">
+                        <label onchange="changeMainRoot()">
+                            <input type="checkbox" id="main-root">
+                            仅练习主根
+                        </label>
+                
+                
+                    </div>
+                
+                
+                
+                    <div class="floatright">
+                        <button onclick="clearProgress()">重置进度</button>
+                        <span>
+                            &nbsp;当前:<strong id="cur">1</strong>&nbsp;最高:<strong id="max">1</strong>&nbsp;总数:<strong id="all">241</strong>
+                        </span>
+                    </div>
+                
+                </div>
+                <div class="center80">
+                    <p id="root">口〇</p>
+                    <p id="code"></p>
+            
+                    <input id="input" type="text" oninput="inputChanged()">
+            
+            
+                <p id="tip">实在想不起来时按空格</p>
+                <progress id="progress" value="1" max="241"></progress>
+            
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+
+    </div>
+  </div>
+  
+  <div class="footer hidden visible-lg">
+    <div class="row">
+      <div class="col-xs-12 col-md-4 pt-0-xs">
+        <img src="images/brand.png" alt="helloworld综合资源web服务" class="my-brand1">
+        <p class="footer-title1">前端之家  </p>
+      </div>
+      <div class="col-xs-12 col-md-4 pt-0-xs">
+        <ul class="rec-list flex-col">
+          <li><span class="footer-title">友情链接</span></li>
+          <li><a href="#">教务系统</a></li>
+          <li><a href="https://www.extfans.com/">扩展迷</a></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-md-4 ">
+        <ul class="about-list flex-col ">
+          <li><span class="footer-title">关于</span></li>
+          <li><a href="#">关于helloworld</a></li>
+          <li><a href="#">关于作者</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  <style>
+
+
+
+    @font-face {
+        font-family: TumanPUA;
+        src: url("./fonts/TumanPUA.ttf");
+    }
+
+#root {
+  font-family: TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif;
+    margin: auto;
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+}
+
+#code {
+      font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, sans-serif, serif;
+    margin: auto;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+    #tip {
+        font-size: smaller;
+    }
+
+
+
+    .center80 {
+        margin: auto;
+        position: absolute;
+        top: 40%;
+
+
+
+        text-align: center;
+        width: 100%;
+
+    }
+
+
+    .top {
+        margin: auto;
+
+        text-align: center;
+        width: 100%;	
+        font-size: small;		
+    }
+
+
+    .floatleft {
+        margin: 0.3rem;
+        text-align: center;
+        float: left;
+    
+    }
+
+
+
+    .floatright {
+        margin: 0.3rem;
+        text-align: center;
+        float: right;
+        clear: right;
+
+    }
+
+
+
+    #input {
+
+        padding: 0.3rem;
+        font-size: 1rem;
+        text-align: center;
+        width: 20%;
+    }
+
+    
+    </style>
+    
+    <script src="js/practice.js"></script>
+    <script id="allow-copy_script">(function e(){var e=!1;document.addEventListener("allow_copy",(function(t){e=t.detail.unlock}));var t=["copy","cut","contextmenu","selectstart","mousedown","mouseup","mousemove","keydown","keypress","keyup"],n=function(t){e&&(t.stopPropagation(),t.stopImmediatePropagation&&t.stopImmediatePropagation())};t.forEach((function(e){document.documentElement.addEventListener(e,n,{capture:!0})}))})()</script>
+</body>
+</html>
