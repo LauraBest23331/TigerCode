@@ -213,6 +213,13 @@ body {
 .yzui>li>blockquote{
   font-weight: 700;
 }
+.cepk{
+  width: 100%;
+  
+}
+.hev{
+  font-weight: 700;
+}
 @media (max-width: 414px) {
   .paragraph01{
     height: 320px;
@@ -220,5 +227,8 @@ body {
   .paragraph02{
     background-color: #fff;
     margin-top: 0;
+  }
+  .cepk{
+    
   }
 }

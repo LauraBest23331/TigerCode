@@ -14,10 +14,47 @@
     background-color: #f6c456 !important;
     text-decoration: none;
     padding: 16px !important;
-    width: 100%;
+    width: 30%;
+    margin-top: 10px;
+}
+.join-btn {
+    font-family: muli !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 16px !important;
+    text-align: center !important;
+    border-radius: 10px;
+    border: none;
+    outline: none !important;
+    color: #1a3349 !important;
+    background-color: #adc8ed;
+
+    text-decoration: none;
+    padding: 16px !important;
+    width: 30%;
     margin-top: 10px;
 }
 .p-5{
     padding-left: 5px;
     padding-right: 5px;
 }
+@media (max-width: 454px) {
+    .pt-20{
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .main-header{
+      margin: 15px auto 40px;
+      width: 90%;
+    }
+    .pt-5{
+      background: #fff;
+      padding-top: 5px;
+    }
+    .download-btn{
+        width: 100%;
+    }
+    .join-btn{
+        width: 49% !important;
+    }
+  }

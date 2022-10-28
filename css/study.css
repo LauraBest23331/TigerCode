@@ -23,7 +23,9 @@ ul li {
 ol {
   list-style-type: decimal;
 }
-
+.hev{
+  font-weight: 700;
+}
 @media (max-width: 454px) {
   .pt-20{
     padding-top: 20px;
