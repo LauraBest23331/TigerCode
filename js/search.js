@@ -7,7 +7,7 @@
         list = []
         let _key = $('#exampleInputName2').val()
         for (let i = 0 ; i < _key.length; i++) {
-            axios.post('http://124.71.20.246:3000/diction/search', {
+            axios.post('/api', {
                 key: _key[i]
               })
               .then( (res)=> {
