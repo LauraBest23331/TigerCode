@@ -63,7 +63,7 @@
   background-color: #fff !important;
 }
 body {
-  background-color: #f6f6f6 !important;
+  background-color: #f6f6f6;
   padding-top: 75px !important;
   overflow-x: hidden;
   
@@ -82,7 +82,15 @@ body {
   font-weight: bold !important;
 }
 .hidden {
-  display: nones;
+  display: none;
+}
+.hello {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000 !important;
+}
+.hev{
+  font-weight: 700;
 }
 @media (min-width: 1200px) {
   .visible-lg {
@@ -90,9 +98,12 @@ body {
   }
   
 }
-@media (max-width: 414px) {
+@media (max-width: 514px) {
   .pt-0-xs {
     padding: 0 !important;
+  }
+  .hello{
+    margin-left: 15px;
   }
 }
 .row div {

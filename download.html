@@ -17,6 +17,8 @@
   <!-- 引入bootstrap.js模块 -->
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/common.js"></script>
+
   <title>下载资源</title>
 </head>
 <body>
@@ -59,7 +61,14 @@
           <li><a href="#"></a></li>
 
         </ul>
-      
+        <ul class="nav navbar-nav navbar-right module-right logbtn-box">
+          <li><a href="login.html" class="login-btn brand-btn">登录</a></li>
+          <li><a href="register.html" class="sign_up-btn brand-btn">注册</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right module-right hidden">
+    <li class="hello"><span  ><span id="loginTime"></span>，<span id="uname"></span><span><a href="#" id="logout"> 注销</a></span></span></li>
+         
+        </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>

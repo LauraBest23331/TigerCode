@@ -9,29 +9,19 @@ const codeEle = document.getElementById("code");
 const inputEle = document.getElementById("input");
 const progressEle = document.getElementById("progress");
 const host = 'https://tiger-code.com'
-const trank = []
 let loginUser = {}
 let score = 0;
 let account = ''
 let onlyMain = onlyRootEle.checked;
 let checkLength = 2;
 let successCount = 0
-let topChi = 0
-let nowIndex = -1
 let failCount = 0
-let mode = 0
 function changeMainRoot() {
     onlyMain = onlyRootEle.checked;
     if (codeEle.textContent !== "") {
         codeEle.textContent = onlyMain ? root_code[index[0]].substring(0, 1) : root_code[index[0]];
     }
     inputEle.value = "";
-    if (mode == 0) {
-        mode = 1
-    }else {
-        mode = 0
-    }
-    console.log('模式'+mode);
     checkLength = onlyMain ? 1 : 2;
 }
 
@@ -50,12 +40,10 @@ let count = new Array(total); // 字根答对次数
 getProgress();
 function saveScore(count) {
     console.log('正在保存分数score='+ score);
-    console.log('最高连鸡数：' + topChi);
     $.post(host+'/api/rank/addScore', {
         score: score,
         account: account,
-        count: pcount,
-        topchi: topChi
+        count: pcount
     } , ()=>{
         reflash()
     })
@@ -75,54 +63,28 @@ function reflash() {
                   <div class="he1">排行</div>
                   <div class="he2">虎名</div>
                   <div class="he3">分数</div>
-                  <div class="he3">连🐔</div>
-
-
                   <div class="he4">段位</div>
 
                 </div>
             `
-            for (let i = 0; i < list.length; i++) {
-                if (list[i].score == 0) break
-                if (loginUser)
-               
-                if (i < 3) {
-                    _html += `
-                    <div class="rank-body" id="${'line'+i}">
-                    <div class="he1"><img class="chapion" src="pngs/chapion${i+1}.png" alt=""></div>
-                    <div class="he2">${list[i].uname}</div>
-                    <div class="he3">${list[i].score}</div>
-                    <div class="he3">${list[i].topchi}</div>
-                    <div class="he4">${showDrww(list[i].score)}</div>
-    
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].score == 0) break
+            if (list[i].uname == loginUser.uname) {
+                score = list[i].score
+                $('#score').text(score)
+
+            }
+            _html += `
+                     <div class="rank-body">
+                  <div class="he1">${i+1}</div>
+                  <div class="he2">${list[i].uname}</div>
+                  <div class="he3">${list[i].score}</div>
+                  <div class="he4">${showDrww(list[i].score)}</div>
+
                 </div>
-                    `
-                }
-                else {
-                    _html += `
-                    <div class="rank-body" id="${'line'+i}">
-                 <div class="he1">${i+1}</div>
-                 <div class="he2">${list[i].uname}</div>
-                 <div class="he3">${list[i].score}</div>
-                 <div class="he3">${list[i].topchi}</div>
-                 <div class="he4">${showDrww(list[i].score)}</div>
-    
-               </div>
-           `
-                }
-                if (list[i].uname == loginUser.uname) {
-                    score = list[i].score
-                    $('#score').text(score)
-                    nowIndex = i
-                
-                }
-            }
-            $('.rank').html(_html)
-            if (nowIndex != -1) {
-    
-                $('#line'+nowIndex).addClass('colorHu')
-                console.log('当前坐标'+nowIndex);
-            }
+            `
+        }
+        $('.rank').html(_html)
         
     })
 }
@@ -148,11 +110,7 @@ function debounce(fn, delay) {
 }
 let timer = null
 function changePoints(count) {
-    if (mode == 1) {
-        $('#score').text(score)
-        $('#tip').text('当前模式不支持参与排行')   
-        return 
-    }
+
     score = score+count*2
     pcount = count
     console.log("分数"+pcount*2);
@@ -161,7 +119,6 @@ function changePoints(count) {
         $('#tip').text('登录小虎账号以保存进度')
         return
     }
-   
     $('#tip').text('当前连击'+successCount+'，'+count+'倍积分')
     loginUser.score = score
     $('#score').text(score)
@@ -215,7 +172,6 @@ function computeFail() {
 }
 function inputChanged() {
     // 只要有空格就是错的
-
     if (input.value.indexOf(' ') > -1) {
         count[0] = -1;
         showQuest();
@@ -237,18 +193,16 @@ function inputChanged() {
             nextRoot();
 
                 changePoints(computeSuc())
-            if (successCount > topChi) {
-                topChi = successCount
-            }
+
 
 
         }
         // 答错，该字根进度置为-1
         else {
             count[0] = -1;
+            successCount = 0
             failCount++;
             showQuest();
-            successCount = 0
 
 
             changePoints(computeFail())
@@ -367,14 +321,6 @@ function clearProgress() {
     saveProgress();
     maxProgress = 0;
     showQuest();
-    index[0] + 1
-    if (index[0] + 1 <= 240) {
-
-        successCount = 0
-        changePoints(computeFail())
-    }
-
-
 }
 function showDrww(e) {
     if (e >= 0 && e < 200) {
@@ -424,18 +370,11 @@ function showDrww(e) {
     }else if (e >= 51000 && e <81000 ) {
         return '超凡大虎'
     }else if (e >= 81000 && e <150000 ) {
-        return '傲世之虎'
+        return '傲世宗师'
     }
-    else if (e >= 150000 && e < 1140000) {
-        return '最强虎人' +(Math.trunc( ( e - 150000) / 10000)+1)+"星"
-    }else if (e >= 1140000 && e < 11400000) {
-        return '超级秃境' +(Math.trunc( ( e - 1140000) / 1000000)+1)+"重"
-
-    }else if (e >= 11400000) {
-        return '逆天虎神';
-
-    }
-    else {
+    else if (e >= 150000) {
+        return '最强虎人' +Math.trunc( ( e - 150000) / 100000)+"星"
+    }else {
         return '神秘段位'
     }
 }
@@ -463,66 +402,29 @@ $(document).ready(()=>{
                   <div class="he1">排行</div>
                   <div class="he2">虎名</div>
                   <div class="he3">分数</div>
-                  <div class="he3">连🐔</div>
-
                   <div class="he4">段位</div>
 
                 </div>
             `
-         
         for (let i = 0; i < list.length; i++) {
             if (list[i].score == 0) break
             if (loginUser)
             if (list[i].uname == loginUser.uname) {
                 score = list[i].score
-                topChi = list[i].topchi
-                console.log('当前最高连击：'+ topChi);
                 $('#score').text(score)
-                nowIndex = i
-                $('.ranknum').text(i+1)
-                if (i == 0) {
-                    $('.diffScore').text('您已经天下无敌！')
-                }else {
-                    $('.diffScore').text(list[i-1].score-list[i].score+'分')
-
-                }
-                $('.tdrww').text(showDrww(list[i].score))
-                $('.tchi').text(topChi+'🐔')
-                $('.login-color-box').removeClass('hidden')
-                $('.unlogin-color-box').addClass('hidden')
 
             }
-            if (i < 3) {
-                _html += `
-                <div class="rank-body" id="${'line'+i}">
-                <div class="he1"><img class="chapion" src="pngs/chapion${i+1}.png" alt=""></div>
-                <div class="he2">${list[i].uname}</div>
-                <div class="he3">${list[i].score}</div>
-                <div class="he3">${list[i].topchi}</div>
-                <div class="he4">${showDrww(list[i].score)}</div>
+            _html += `
+                     <div class="rank-body">
+                  <div class="he1">${i+1}</div>
+                  <div class="he2">${list[i].uname}</div>
+                  <div class="he3">${list[i].score}</div>
+                  <div class="he4">${showDrww(list[i].score)}</div>
 
-            </div>
-                `
-            }
-            else {
-                _html += `
-                <div class="rank-body" id="${'line'+i}">
-             <div class="he1">${i+1}</div>
-             <div class="he2">${list[i].uname}</div>
-             <div class="he3">${list[i].score}</div>
-             <div class="he3">${list[i].topchi}</div>
-             <div class="he4">${showDrww(list[i].score)}</div>
-
-           </div>
-       `
-            }
-          
+                </div>
+            `
         }
         $('.rank').html(_html)
-        if (nowIndex != -1) {
-
-            $('#line'+nowIndex).addClass('colorHu')
-            console.log('当前坐标'+nowIndex);
-        }
+        
     })
 })

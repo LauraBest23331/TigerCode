@@ -15,7 +15,19 @@
   <!-- 引入bootstrap.js模块 -->
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/common.js"></script>
+
   <title>学习路线</title>
+  <style>
+    @font-face {
+        font-family: 'TumanPUA';
+        src: url("./fonts/TumanPUA.ttf");
+        /* src: url("./fonts/LXGWWenKaiGBScreenR.ttf"); */
+    }
+    .huh {
+      font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif;
+    }
+  </style>
 </head>
 
 <body>
@@ -58,7 +70,14 @@
           <li><a href="#"></a></li>
 
         </ul>
-      
+        <ul class="nav navbar-nav navbar-right module-right logbtn-box">
+          <li><a href="login.html" class="login-btn brand-btn">登录</a></li>
+          <li><a href="register.html" class="sign_up-btn brand-btn">注册</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right module-right hidden">
+    <li class="hello"><span  ><span id="loginTime"></span>，<span id="uname"></span><span><a href="#" id="logout"> 注销</a></span></span></li>
+         
+        </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
@@ -72,7 +91,7 @@
               虎码学习路线
             </div>
             <div class="text">
-              虎码入门虽然简单，但是想要做好很难，你需要耐心：初学1到2个月时，打字可能会较慢，需要坚持过这段时间。学习方式很多，这篇简略教程，来给大家一个参考。<br> <span class="hev">查看详细教程可以访问<a href="https://publish.obsidian.md/csj-obsidian/1+-+Archives/Input+Method/%E8%99%8E%E7%A0%81/%E8%99%8E%E7%A0%81%E6%95%99%E7%A8%8B">虎码详细教程</a> 。</span> 
+              虎码入门虽然简单，但是想要做好很难，你需要耐心：初学1到2个月时，打字可能会较慢，需要坚持过这段时间。学习方式很多，这篇简略教程，来给大家一个参考。<br> <span class="hev">查看详细教程可以访问<a target="_blank" href="https://tiger-code.com/guide">虎码详细教程</a> 。</span> 
             </div>
           </div>
         </div>
@@ -85,7 +104,7 @@
             <p>学习虎码大致步骤如下：</p>
             <ul>
               <li>1.最开始学习的2小时：使用<a href="practise.html">字根练习程序</a>背完虎码字根，尝试打简单的字。</li>
-              <li>2.第2天：使用**字根学习软件**复习虎码字根。</li>
+              <li>2.第2天：使用<a href="practise.html">字根练习程序</a>复习虎码字根。</li>
               <li>3.第1个月：以练习常用前500字为主，同时使用虎码进行简单的聊天。会拆所有字，了解与其它方案不同的特色拆分。</li>
               <li>4.第2个月：坚持日常使用虎码为主方案。练习常用前1500字，以及简单的文章，双轨并进。</li>
               <li>5.3~4个月左右的练习：这里因人而异，大部分人能达到100以上的速度。有基础的打字高手能恢复之前旧方案150~200的速度。</li>

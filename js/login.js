@@ -1,45 +1,64 @@
 $(document).ready(function() {
       
+    const host = 'https://tiger-code.com'
 
     $("#login-btn").click(function() {
-        var $account = $("#account").val();
-        var $password = $("#psd").val();
+        var $account = $("#login-account").val();
+        var $password = $("#login-password").val();
         var date = new Date();
-        $.post("/user/login", { account: $account, password: $password }, function(
-            data
+        $.post(host+"/api/user/login", { account: $account, passwd: $password }, function(
+            sdata
         ) {
-            //	console.log(data.code);
-            if (data.code == -1) {
-                $(".just").css("display", "block");
-                $(".just").children("p").text(data.msg);
+                console.log($account, $password);
+                let res = JSON.parse(sdata)
+                console.log(res);
+            if (res.code != 200) {
+                $(".tips").removeClass('hidden')
 
                 return;
             } else {
-                $(".just").css("display", "none");
-                $(".log").css("display", "none");
-                $(".log-back").css("display", "block");
-                //console.log($('.log-back').children()[0]);
+                console.log('登录成功'+res);
+                let timeString = '早上好'
                 if (date.getHours() > 6 && date.getHours() < 12) {
-                    $(".log-back")
-                        .children("p")
-                        .text("早上好，" + data.uname);
+                   
+                        timeString = '早上好'
                 }
-                if (date.getHours() >= 12 && date.getHours() < 18) {
-                    $(".log-back")
-                        .children("p")
-                        .html("中午好，" + data.uname);
+                else if (date.getHours() >= 12 && date.getHours() < 16) {
+                    
+                        timeString = '中午好'
+
                 }
-                if (date.getHours() >= 18 && date.getHours() < 24) {
-                    $(".log-back")
-                        .children("p")
-                        .text("晚上好，" + data.uname);
+                else if (date.getHours() >= 16 && date.getHours() < 19) {
+                    
+                        timeString = '下午好'
                 }
+                else if (date.getHours() >= 19 && date.getHours() < 23) {
+                    
+                            timeString = '晚上好'
+    
+                    }
+                else {
+                    timeString='凌晨好'
+                }
+                console.log(res.userInfo);
+                localStorage.setItem('loginUser', JSON.stringify( res.userInfo))
+                localStorage.setItem('loginTime', timeString)
+                // $(".just").css("display", "none");
+                // $(".log").css("display", "none");
+                // $(".log-back").css("display", "block");
+                //console.log($('.log-back').children()[0]);
+                $(location).attr('href', './index.html')
             }
         });
     });
+    $('.login-input').click(()=>{
+        $(".tips").addClass('hidden')
+    
+    })
 });
 $("#log-img").click(function() {
     window.location.href = "index.html";
 });
+
 // banner-密码块
 

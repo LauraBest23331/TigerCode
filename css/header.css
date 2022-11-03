@@ -48,9 +48,21 @@
     .login-btn {
         width: 100%;
         margin:15px 0 ;
+        border-radius: 0% !important;
     }
     .sign_up-btn {
         width: 100%;
+
+        border-radius: 0% !important;
+       
+    }
+    .selected {
+        color: #f6c456 !important;
+  border-bottom: none !important;
+
+    }
+    .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse {
+        max-height: 500px !important;
     }
 }
 @media (min-width: 992px) {
@@ -83,7 +95,7 @@
   }
 
 .selected {
-  color: #000 !important;
+  color: #000;
   border-bottom: 2px solid #f6c456;
 }
 .module-right>li>a {

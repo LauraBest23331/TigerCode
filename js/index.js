@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+
+  $('#logout').click(()=>{
+    localStorage.removeItem('loginTime')
+    localStorage.removeItem('loginUser')
+    $(location).attr('href', './index.html')
+
+
+  })
 $('.begin-btn').click(function(){
   // window.location.href = './rec.html'
   $(location).attr('href', './study.html')

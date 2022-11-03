@@ -12,6 +12,7 @@
     <!-- 引入jQuery模块 -->
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/common.js"></script>
     <!-- 引入bootstrap.js模块 -->
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -19,54 +20,68 @@
     <style>
       @import url("https://cdn.bootcdn.net/ajax/libs/animate.css/4.1.1/animate.compat.css");
 
+ 
+      @font-face {
+          font-family: 'TumanPUA';
+          src: url("./fonts/TumanPUA.ttf");
+          /* src: url("./fonts/LXGWWenKaiGBScreenR.ttf"); */
+      }
+      .huh {
+        font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif;
+      }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">
-              <img alt="Brand" src="images/brand.png" class="my-brand">
-            </a>
-          </div>
-      
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav module-left">
-              <li><a href="index.html" class="selected">首页<span class="sr-only"></span></a></li>
-              <li><a href="study.html">学习路线<span class="sr-only"></span></a></li>
-              <li><a href="practise.html">字根练习<span class="sr-only"></span></a></li>
-              <li><a href="search.html">拆分查询<span class="sr-only"></span></a></li>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          <img alt="Brand" src="images/brand.png" class="my-brand">
+        </a>
+      </div>
 
-              <li><a href="download.html">资源下载<span class="sr-only"></span></a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  加入群聊<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  
-                  <li><a href="https://jq.qq.com/?_wv=1027&k=9HbSlI3Z">虎码新手村</a></li>
-                  <li><a href="https://jq.qq.com/?_wv=1027&k=gLduUVig">虎码官方群</a></li>
-                                     
-                  <!-- <li role="separator" class="divider"></li> -->
-                </ul>
-              </li>
-              <li><a href="#"><span class="sr-only">(current)</span></a></li>
-              <li><a href="#"></a></li>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav module-left">
+          <li><a href="index.html"  class="selected">首页 </a></li>
+          <li><a href="study.html" >学习路线</a></li>
+          <li><a href="practise.html" >字根练习<span class="sr-only"></span></a></li>
+          <li><a href="search.html">拆分查询<span class="sr-only"></span></a></li>
 
+          <li><a href="download.html">资源下载<span class="sr-only"></span></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              加入群聊<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              
+                <li><a href="https://jq.qq.com/?_wv=1027&k=9HbSlI3Z">虎码新手村</a></li>
+                <li><a href="https://jq.qq.com/?_wv=1027&k=gLduUVig">虎码官方群</a></li>
+                                
+              <!-- <li role="separator" class="divider"></li> -->
             </ul>
-            <!-- <ul class="nav navbar-nav navbar-right module-right">
-              <li><a href="login.html" class="login-btn brand-btn">登录</a></li>
-              <li><a href="register.html" class="sign_up-btn brand-btn">注册</a></li>
-            </ul> -->
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+          </li>
+          <li><a href="#"><span class="sr-only">(current)</span></a></li>
+          <li><a href="#"></a></li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right module-right logbtn-box">
+          <li><a href="login.html" class="login-btn brand-btn">登录</a></li>
+          <li><a href="register.html" class="sign_up-btn brand-btn">注册</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right module-right hidden">
+    <li class="hello"><span  ><span id="loginTime"></span>，<span id="uname"></span><span><a href="#" id="logout"> 注销</a></span></span></li>
+         
+        </ul> 
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
     <div class="main-content">
       <div class="paragraph01">
         <div class="container">
@@ -107,11 +122,15 @@
                 <p>字根双编码：主码乱序排列；小码采用音托。
                 同源字根归并后，一共有241个字根。
                大部分形近字根位于同一按键，易记忆；字根大，拆分简单，并且重码低。</p>
-               <img src="./pngs/zigf.jpg" class="cepk" alt="测评图片">
+               <img src="./pngs/zigf.jpg" class="cepk" alt="虎码字根图">
+               <br>
+               <br>
+               
                <p>虎码的单字性能相当优秀，手感极佳，当量仅为1.3。前1500字，全码0重。前3000字，全码10个重码，出简后同样0重。前4000字，出简后仅1个重码，国标一级字无重。</p>
+             
                <img src="./pngs/cepb.jpg" class="cepk" alt="测评图片">
                <br><br>
-                <p>虎码的词组重码率几乎与092五笔相等。远低于五笔86。同样的6万标准词库，双拼约1.8万组重码，五笔86、98、新世纪约1.3万组重码，而虎码约为6200组重码。其余信息可查看<a href="https://publish.obsidian.md/csj-obsidian/1+-+Archives/Input+Method/%E8%99%8E%E7%A0%81/%E8%99%8E%E7%A0%81%E6%95%99%E7%A8%8B">详细介绍。</a></p>
+                <p>虎码的词组重码率几乎与092五笔相等。远低于五笔86。同样的6万标准词库，双拼约1.8万组重码，五笔86、98、新世纪约1.3万组重码，而虎码约为6200组重码。其余信息可查看<a target="_blank" href="https://tiger-code.com/guide">详细介绍。</a></p>
                 <img src="./pngs/cizucepb.jpg" alt="测评图片" class="cepk">
               </div>
               <div class="lg-tag">主要优势</div>
@@ -145,7 +164,7 @@
                  <li>
                   <blockquote>较低的学习成本</blockquote>
 
-                  <p class="sm-text">唯一的难点在于字根的掌握，而这个可以通过记忆软件解决。整理学习难度明显小于五笔。</p>
+                  <p class="sm-text">唯一的难点在于字根的掌握，而这个可以通过记忆软件解决。整体学习难度明显小于五笔。</p>
                 </li>
                 <li>
                   <blockquote>活跃的社区</blockquote>
@@ -160,7 +179,7 @@
                 <li class="sm-text">3. 形近字根，归并为同一主码：如广厂，已己巳，未耒，象兔龟鱼，艹廿卅卌，彐聿肀，卵卯。</li>
                 <li class="sm-text">4. 近义字根，归并为同一主码：如行走足，牙齿。</li>
                 <li class="sm-text">5. 低频字根，根据首部件，归并到高频字根上，以防因使用率过低而忘记：如鹿广，黾口。</li>
-                <li class="sm-text">6. 不成字的字根，归并到形近的成字字根上：如??十，癶八。</li>
+                <li class="sm-text">6. 不成字的字根，归并到形近的成字字根上：如 <span class="huh">𠂇</span>, 十，癶八。</li>
                 <li class="sm-text">7. 字根的归并，不仅能减小记忆量，并且不必过于纠缠于字形、笔划细节，大幅减小使用时的思维负担。</li>
 
               </ol>

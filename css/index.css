@@ -196,6 +196,9 @@ body {
   top: 260px;
   left :65px;
 }
+.hidden {
+  display: none;
+}
 .optimization li{
   margin-top: 5px;
 }
@@ -216,6 +219,10 @@ body {
 .cepk{
   width: 100%;
   
+}
+.hello {
+  font-size: 18px;
+  font-weight: 700;
 }
 .hev{
   font-weight: 700;

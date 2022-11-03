@@ -12,7 +12,9 @@
   <!-- <link rel="stylesheet" href="css/study.css"> -->
   <link rel="stylesheet" href="css/practise.css">
   <!-- 引入jQuery模块 -->
+  
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+  <script src="js/common.js"></script>
   <!-- 引入bootstrap.js模块 -->
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +61,14 @@
           <li><a href="#"></a></li>
 
         </ul>
-      
+        <ul class="nav navbar-nav navbar-right module-right logbtn-box">
+          <li><a href="login.html" class="login-btn brand-btn">登录</a></li>
+          <li><a href="register.html" class="sign_up-btn brand-btn">注册</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right module-right hidden">
+    <li class="hello"><span  ><span id="loginTime"></span>，<span id="uname"></span><span><a href="#" id="logout"> 注销</a></span></span></li>
+         
+        </ul> 
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
@@ -71,21 +80,22 @@
             <div class="h-100">
                 <div class="top">
                     <div class="floatleft">
-                        <label onchange="changeMainRoot()">
-                            <input type="checkbox" id="main-root">
-                            仅练习主根
-                        </label>
-                
-                
+                       
+                        
+                        
                     </div>
                 
                 
                 
                     <div class="floatright">
-                        <button onclick="clearProgress()">重置进度</button>
-                        <span>
-                            &nbsp;当前:<strong id="cur">1</strong>&nbsp;最高:<strong id="max">1</strong>&nbsp;总数:<strong id="all">241</strong>
-                        </span>
+                      <span>
+                        &nbsp;当前:<strong id="cur">1</strong>&nbsp;最高:<strong id="max">1</strong>&nbsp;总数:<strong id="all">241</strong>&nbsp;积分:<strong id="score">0</strong>
+                      </span>
+                      <label onchange="changeMainRoot()">
+                        <input  type="checkbox" id="main-root">
+                        仅练习大码
+                      </label>
+                      <button onclick="clearProgress()" class="btn btn-danger">重置进度</button>
                     </div>
                 
                 </div>
@@ -93,22 +103,67 @@
                     <p id="root">口〇</p>
                     <p id="code"></p>
             
-                    <input id="input" type="text" oninput="inputChanged()">
+                    <input id="input" class="form-control" style="display: inline-block;" type="text" oninput="inputChanged()">
             
             
                 <p id="tip">实在想不起来时按空格</p>
                 <progress id="progress" value="1" max="241"></progress>
-            
+              
+                  <div class="color-box hidden login-color-box">
+                    <div class="box1">
+                      <div class="title">当前排行</div>
+                      <div class="trank"><span class="ranknum"></span></div>
+                    </div>
+                    <div class="box2">
+                      <div class="title">距上一名分差</div>
+                      <div class="trank"><span class="diffScore"></span></div>
+                    </div>
+                    <div class="box3">
+                      <div class="title">目前段位</div>
+                      <div class="trank"><span class="tdrww"></span></div>
+                    </div>
+                    <div class="box4">
+                      <div class="title">最高连击</div>
+                      <div class="trank"><span class="tchi"></span></div>
+                    </div>
+                  </div>
+                  <div class="color-box unlogin-color-box">
+                    <div class="box5">
+                      <div class="title">单机模式</div>
+                      <div class="trank">请先登录</div>
+                    </div>
+
+                  </div>
                 </div>
             </div>
             
         </div>
         <div class="col-md-2"></div>
       </div>
+     <div class="row mt-10" >
+      <div class="col-md-2"></div>
+      <div class="col-md-8  bg-white primary-shadow ">
+        <div class="drww-box">
+            <div class="title"><span>虎村天梯榜</span></div>
+            <div class="mini_title"><span>该排行实时动态更新，每个季度会重置。</span></div>
+            <div class="rank mt-10 ">
+                <div class="rank-header">
+                  <div class="he1">排行</div>
+                  <div class="he2">虎名</div>
+                  <div class="he3">分数</div>
+                  <div class="he3">连🐔</div>
 
+                  <div class="he4">段位</div>
+
+                </div>
+            </div>
+        </div>
+
+      </div>
+        <div class="col-md-2"></div>
+     </div>
     </div>
   </div>
-  
   <div class="footer hidden visible-lg">
     <div class="row">
       <div class="col-xs-12 col-md-4">
@@ -137,14 +192,16 @@
   <style>
 
 
-
-    @font-face {
-        font-family: TumanPUA;
+@font-face {
+        font-family: 'TumanPUA';
         src: url("./fonts/TumanPUA.ttf");
+        /* src: url("./fonts/LXGWWenKaiGBScreenR.ttf"); */
     }
 
 #root {
-  font-family: TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif;
+  font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif !important;
+  
+
     margin: auto;
     font-size: 5rem;
     text-align: center;
@@ -152,7 +209,6 @@
 }
 
 #code {
-      font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, sans-serif, serif;
     margin: auto;
     font-size: 3.5rem;
     text-align: center;
@@ -160,7 +216,8 @@
 }
 
     #tip {
-        font-size: smaller;
+        font-size: 13px;
+        margin-top: 1.5rem;
     }
 
 

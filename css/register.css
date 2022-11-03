@@ -9,16 +9,19 @@
     display: inline-block;
     text-align: right;
 }
+.header{
+    box-sizing: content-box;
+}
 #main-container{
     position: relative;
     width: 1100px;
     padding-bottom: 100px;
     margin: 0 auto;
-    background: #F5FAFF;
+    background: #fff;
 }
 a {
     text-decoration: none;
-    color: #21d196;
+    color: #21d196 !important;
     transition: all .3s ease 0s;
 }
 
@@ -40,6 +43,7 @@ button{transition: all .3s ease 0s;}
 }
 body{
     background:#F5FAFF ;
+    width: 100% !important;
 }
 .step-guide{
     width: 540px;
@@ -145,7 +149,7 @@ body{
 }
 #eye {
     position: absolute;
-    top: 11px;
+    top: 31px;
     right: 9px;
     width: 24px;
 }
@@ -171,8 +175,8 @@ body{
     vertical-align: middle;
     height: 46px;
     line-height: 46px;
-    border-color: #21d196;
-    background-color: #21d196;
+    border-color: #21d196 !important;
+    background-color: #21d196 !important;
     width: 100%;
     margin-top: 10px;
     border-radius: 2px;
@@ -183,17 +187,32 @@ body{
     cursor: pointer;
     position: relative;
 }
+.hidden {
+    display: none !important;
+}
 .next-btn:focus{
     outline: none;
 }
+
 .next-btn:hover{
     color: #fff !important;
    background-color: #18b681 !important;
    text-decoration: none;
 }
+@media (min-width: 1270px) {
+    .agree{
+        margin-top: 48px !important;
+    }
+    .tips-input-pwd{
+        margin-top: 36px !important;
+    }
+}
 @media (max-width: 750px) {
     body{
         background: #fff;
+    }
+    .input-box {
+        min-height: 100px;
     }
     .header{
         border-bottom: 1px solid #cecece;
@@ -210,12 +229,48 @@ body{
     .step-guide{
         display: none;
     }
+    .tips-input-pwd {
+        margin-top: 35px !important;
+    }
     .go_login-title{
-        position: relative;
-        left: 72%;
-        top: -10px !important;
+        position: absolute;
+        left: 63%;
+        top: 30px !important;
         display: inline-block;
         text-align: right;
+    }
+    .reg-box {
+        width: 100%;
+        padding: 10px 10px;
+        box-sizing: border-box;
+    }
+    .input-container {
+        width: 100% !important;
+    }
+    #main-container{
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+    .header {
+        margin-bottom: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        position: relative;
+        height: 60px;
+    }
+    body {
+        background: #fff !important;
+        height: 100vh;
+    }
+    .main-box1{
+        width: 100% !important;
+    }
+    .brand-title{
+        width: 120px;
+        height: auto;
+    }
+    .step-guide{
+        width: 100% !important;
     }
 }
 .step-error {

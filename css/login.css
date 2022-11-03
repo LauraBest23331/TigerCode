@@ -137,3 +137,10 @@ a {
     color: #0366D6;
 }
 
+.tips {
+    color: red;
+    font-size: 14px;
+}
+.hidden {
+    display: none;
+}
