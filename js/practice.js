@@ -19,6 +19,7 @@ let successCount = 0
 let topChi = 0
 let nowIndex = -1
 let failCount = 0
+let diffScore = -1
 let mode = 0
 function changeMainRoot() {
     onlyMain = onlyRootEle.checked;
@@ -35,8 +36,8 @@ function changeMainRoot() {
     checkLength = onlyMain ? 1 : 2;
 }
 
-const root_char = ["口〇","人亻","亼亽","一㇀","八丷䒑癶","日曰⺜","木朩","手扌龵","水氵⺍氺","十𠂇","丶㇏","宀冖","土","艹廾丌艸","又ス","心忄⺗","刀〢刂リ","丿㇒","大","言讠","辶","匕","女","火灬","厶龴","糸纟","小⺌𡭔","月⺝","冂凵⺆","阝","王","寸","儿","目","田","力","冫⺀","勹","贝","丨㇚","攵攴","㇆乛⺄乚ヿ㇗ㄋㄅの","禾","厂⺁","尸","立","⺈","金钅","止龰","夕","衣衤","子孑","竹⺮","卩ㄗ⺋","工","犬犭","彐彑","囗(框)","彡","巾","亠","广","白","示礻","车車","虫","斤","夂夊","米","廿龷","𠂉","牛牜⺧","匚匸コ","山","隹","几⺇","二","高","戈","艮","门","方","云","士","石","彳 亍","丰龶","页頁","足⻊","老耂","古","羊⺷⺶芈","也","疋⺪𤴓","爪爫","可","耳","夫","㐅","甘","聿肀","马","四罒","欠","屮","里","矢","皿","不","戊戉","户","疒","见","各","自","殳","弓","川巛巜","西覀","穴","走","文","己","至","未","幺","业","巴","片爿丬","干","巳","音","九","生","七","用","且","歹歺","尚龸","酉","舌","豕","丁","千","皮","母","鸟","而","羽","鱼𩵋","六","了","食饣","弋","弗𢎨𠂔","非","尤尢","舟","臼","亡亾","由","长镸","井","予","乍","辛","束","㠯","廴","册","乃","㐄","甫","无旡","氏","身㐆","缶","亥","及","毛","句","支","乙","三","五","之","两","斗","虎⾌","行","豆","谷","革","鬼","","牙","龙","卯","气","韦","黑","兔","壴","麻","仑侖","辰","光","象","齐","丩","民","曲","面","臣","骨冎","已","黄","耒","瓜","甲","瓦","卅","入","㡀","齿","鹿","飞","鬲","豸","乡","毋毌","乌","习","鼠","黾","卌","卵","龟","雨⻗","卜⺊","禸⽱"];
-const root_code = ["dk", "jr", "ji", "fi", "hb", "or", "em", "us", "ks", "ns", "id", "wg", "gt", "lc", "ry", "hx", "pd", "tp", "md", "sy", "uc", "vb", "bn", "ch", "ks", "is", "yx", "vy", "mk", "te", "nw", "kc", "pe", "qm", "qt", "sl", "wb", "nk", "ob", "gs", "hp", "ae", "xh", "xc", "cs", "il", "xd", "zj", "si", "lx", "ti", "hi", "ru", "zj", "ug", "mq", "bj", "rk", "es", "rj", "zt", "xg", "ub", "fs", "yc", "cc", "tj", "hi", "pm", "ln", "et", "qn", "nk", "vs", "ui", "oj", "me", "gg", "pg", "ig", "am", "lf", "by", "gs", "ms", "wc", "af", "wy", "pu", "ql", "cg", "gy", "ey", "ts", "ya", "zk", "qe", "hf", "bi", "zg", "bv", "nm", "ys", "eq", "sc", "dl", "os", "am", "cb", "nu", "mh", "ab", "ej", "sg", "oi", "rs", "bg", "oc", "vx", "ex", "pz", "vw", "vj", "yi", "aw", "iy", "cy", "mb", "ap", "eg", "vs", "xy", "kj", "ls", "rq", "ty", "fq", "gd", "ss", "yy", "as", "js", "ad", "lq", "rp", "km", "xn", "le", "zv", "wv", "al", "rl", "qs", "pi", "tf", "rf", "oy", "io", "pj", "fw", "dy", "pc", "qj", "iv", "wa", "nx", "xs", "ki", "uy", "ic", "vn", "vk", "nf", "du", "bs", "zs", "af", "kh", "cj", "vm", "gj", "ci", "ai", "ts", "wu", "ri", "ml", "jd", "zh", "px", "zd", "hg", "tg", "ag", "bk", "ly", "tl", "bm", "vq", "gw", "ph", "wt", "hu", "zm", "jl", "fc", "mg", "wx", "qq", "ij", "dm", "yq", "bm", "qc", "fg", "vi", "nh", "al", "yg", "sj", "rw", "ls", "ju", "fb", "lc", "xl", "cf", "ng", "mi", "ix", "ku", "xu", "zx", "ps", "dm", "lx", "bl", "wg", "tv", "yb", "vr"];
+const root_char = ["口〇","人亻","亼亽","一㇀","八丷䒑癶","日曰⺜","木朩","手扌龵","水氵⺍氺","十𠂇","丶㇏","宀冖","土","艹廾丌艸","又ス","心忄⺗","刀〢刂リ","丿㇒","大","言讠","辶","匕","女","火灬","厶龴","糸纟","小⺌𡭔","月⺝","冂凵⺆","阝","王","寸","儿","目","田","力","冫⺀","勹","贝","丨㇚","攵攴","㇆乛⺄乚ヿ㇗ㄋㄅの","禾","厂⺁","尸","立","⺈","金钅","止龰","夕","衣衤","子","竹⺮","卩ㄗ⺋","工","犬犭","彐彑","囗(框)","彡","巾","亠","广","白","示礻","车車","虫","斤","夂夊","米","廿龷","𠂉","牛牜⺧","匚コ","山","隹","几⺇","二","高","戈","艮","门","方","云","士","石","彳 亍","丰龶","页頁","足⻊","老耂","古","羊⺷⺶芈","也","疋𤴓⺪","爪爫","可","耳","夫","乂㐅","甘","聿肀","马","四罒","欠","屮","里","矢","皿","不","戊戉","户","疒","见","各","自","殳","弓","川巛巜","西覀","穴","走","文","己","至","未","幺","业","巴","片爿丬","干","巳","音","九","生","七","用","且","歹歺","尚龸","酉","舌","豕","丁","千","皮","母","鸟","而","羽","鱼𩵋","六","了","食饣","弋","弗𢎨𠂔","非","尤尢","舟","臼","亡亾兦","由","长镸","井","予","乍","辛","束","㠯","廴","册","乃","㐄","甫","无旡","氏","身㐆","缶","亥","及","毛","句","支","乙","三","五","之","两","斗","虎⾌","行","豆","谷","革","鬼","","牙","龙","卯","气","韦","黑","兔","壴","麻","仑侖","辰","光","象","齐","丩","民","曲","面","臣","骨冎","已","黄","耒","瓜","甲","瓦","卅","入","㡀","齿","鹿","飞","鬲","豸","乡","毋毌","乌","习","鼠","黾","卌","卵","龟","雨⻗","卜⺊","禸⽱"]
+const root_code = ["dk","jr","ji","fi","hb","or","em","us","ks","ns","id","wg","gt","lc","ry","hx","pd","tp","md","sy","uc","vb","bn","ch","ks","is","yx","vy","mk","te","nw","kc","pe","qm","qt","sl","wb","nk","ob","gs","hp","ae","xh","xc","cs","il","xd","zj","si","lx","ti","hi","ru","zj","ug","mq","bj","rk","es","rj","zt","xg","ub","fs","yc","cc","tj","hi","pm","ln","et","qn","nk","vs","ui","oj","me","gg","pg","ig","am","lf","by","gs","ms","wc","af","wy","pu","ql","cg","gy","ey","ts","ya","zk","qe","hf","bi","zg","bv","nm","ys","eq","sc","dl","os","am","cb","nu","mh","ab","ej","sg","oi","rs","bg","oc","vx","ex","pz","vw","vj","yi","aw","iy","cy","mb","ap","eg","vs","xy","kj","ls","rq","ty","fq","gd","ss","yy","as","js","ad","lq","rp","km","xn","le","zv","wv","al","rl","qs","pi","tf","rf","oy","io","pj","fw","dy","pc","qj","iv","wa","nx","xs","ki","uy","ic","vn","vk","nf","du","bs","zs","af","kh","cj","vm","gj","ci","ai","ts","wu","ri","ml","jd","zh","px","zd","hg","tg","ag","bk","ly","tl","bm","vq","gw","ph","wt","hu","zm","jl","fc","mg","wx","qq","ij","dm","yq","bm","qc","fg","vi","nh","al","yg","sj","rw","ls","ju","fb","lc","xl","cf","ng","mi","ix","ku","xu","zx","ps","dm","lx","bl","wg","tv","yb","vr"]
 const total = root_char.length;// 字根总数
 let pcount = 0
 let maxProgress = 0;
@@ -77,54 +78,67 @@ function reflash() {
                   <div class="he3">分数</div>
                   <div class="he3">连🐔</div>
 
-
                   <div class="he4">段位</div>
 
                 </div>
             `
-            for (let i = 0; i < list.length; i++) {
-                if (list[i].score == 0) break
-                if (loginUser)
-               
-                if (i < 3) {
-                    _html += `
-                    <div class="rank-body" id="${'line'+i}">
-                    <div class="he1"><img class="chapion" src="pngs/chapion${i+1}.png" alt=""></div>
-                    <div class="he2">${list[i].uname}</div>
-                    <div class="he3">${list[i].score}</div>
-                    <div class="he3">${list[i].topchi}</div>
-                    <div class="he4">${showDrww(list[i].score)}</div>
-    
-                </div>
-                    `
+         
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].score == 0) break
+            if (loginUser)
+            if (list[i].uname == loginUser.uname) {
+                score = list[i].score
+                topChi = list[i].topchi
+                console.log('当前最高连击：'+ topChi);
+                $('#score').text(score)
+                nowIndex = i
+                $('.ranknum').text(i+1)
+                if (i == 0) {
+                    $('.diffScore').text('您已经天下无敌！')
+                }else {
+                    diffScore = list[i-1].score-list[i].score
+                    $('.diffScore').text(list[i-1].score-list[i].score+'分')
+
                 }
-                else {
-                    _html += `
-                    <div class="rank-body" id="${'line'+i}">
-                 <div class="he1">${i+1}</div>
-                 <div class="he2">${list[i].uname}</div>
-                 <div class="he3">${list[i].score}</div>
-                 <div class="he3">${list[i].topchi}</div>
-                 <div class="he4">${showDrww(list[i].score)}</div>
-    
-               </div>
-           `
-                }
-                if (list[i].uname == loginUser.uname) {
-                    score = list[i].score
-                    $('#score').text(score)
-                    nowIndex = i
-                
-                }
+                $('.tdrww').text(showDrww(list[i].score))
+                $('.tchi').text(topChi+'🐔')
+                $('.login-color-box').removeClass('hidden')
+                $('.unlogin-color-box').addClass('hidden')
+
             }
-            $('.rank').html(_html)
-            if (nowIndex != -1) {
-    
-                $('#line'+nowIndex).addClass('colorHu')
-                console.log('当前坐标'+nowIndex);
+            if (i < 3) {
+                _html += `
+                <div class="rank-body" id="${'line'+i}">
+                <div class="he1"><img class="chapion" src="pngs/chapion${i+1}.png" alt=""></div>
+                <div class="he2">${list[i].uname}</div>
+                <div class="he3">${list[i].score}</div>
+                <div class="he3">${list[i].topchi}</div>
+                <div class="he4">${showDrww(list[i].score)}</div>
+
+            </div>
+                `
             }
-        
-    })
+            else {
+                _html += `
+                <div class="rank-body" id="${'line'+i}">
+             <div class="he1">${i+1}</div>
+             <div class="he2">${list[i].uname}</div>
+             <div class="he3">${list[i].score}</div>
+             <div class="he3">${list[i].topchi}</div>
+             <div class="he4">${showDrww(list[i].score)}</div>
+
+           </div>
+       `
+            }
+          
+        }
+        $('.rank').html(_html)
+        if (nowIndex != -1) {
+
+            $('#line'+nowIndex).addClass('colorHu')
+            console.log('当前坐标'+nowIndex);
+        }
+})
 }
 function fhdz(func, time,count) {
     let timer
@@ -154,6 +168,8 @@ function changePoints(count) {
         return 
     }
     score = score+count*2
+    $('.tchi').text(topChi+'🐔')
+
     pcount = count
     console.log("分数"+pcount*2);
     if (!loginUser) {
@@ -161,7 +177,6 @@ function changePoints(count) {
         $('#tip').text('登录小虎账号以保存进度')
         return
     }
-   
     $('#tip').text('当前连击'+successCount+'，'+count+'倍积分')
     loginUser.score = score
     $('#score').text(score)
@@ -449,6 +464,9 @@ $(document).ready(()=>{
         account = loginUser.account
         user = loginUser
     }
+    $('.box5').click(function(){
+        $(location).attr('href', './login.html')
+    })
     $.post(host + '/api/rank/getZigfRankList', (sdata)=>{
         let res = JSON.parse(sdata)
         if (res.code != 200) {
@@ -483,6 +501,7 @@ $(document).ready(()=>{
                 if (i == 0) {
                     $('.diffScore').text('您已经天下无敌！')
                 }else {
+                    diffScore = list[i-1].score-list[i].score
                     $('.diffScore').text(list[i-1].score-list[i].score+'分')
 
                 }

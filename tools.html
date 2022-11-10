@@ -13,13 +13,25 @@
   <!-- <link rel="stylesheet" href="css/study.css"> -->
   <!-- <link rel="stylesheet" href="css/practise.css"> -->
   <!-- 引入jQuery模块 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
   <!-- 引入bootstrap.js模块 -->
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <script src="js/common.js"></script>
-
-  <title>下载资源</title>
+  <script src="js/tools.js"></script>
+  <title>实用工具</title>
+  <style>
+    #text{
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .primary-shadow{
+      box-shadow: none;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -45,8 +57,8 @@
           <li><a href="study.html"  >字根练习<span class="sr-only"></span></a></li>
           <li><a href="search.html">拆分查询<span class="sr-only"></span></a></li>
 
-          <li><a href="download.html" class="selected">资源下载<span class="sr-only"></span></a></li>
-          <li><a href="tools.html">实用工具<span class="sr-only"></span></a></li>
+          <li><a href="download.html">资源下载<span class="sr-only"></span></a></li>
+          <li><a href="tools.html" class="selected">实用工具<span class="sr-only"></span></a></li>
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -80,27 +92,13 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 pt-20 bg-white primary-shadow study">
             <div class="h-100 p-5">
-                <div>
-                    <h3>下载方式1：站内下载</h3>
-                </div>
                 <div> 
-                    <h3><blockquote>暂未开通</blockquote></h3>
+                    <div><h2>1.智能评测工具</h2></div>
+                    <h3><blockquote>由群友ID:Wave B开发，在下方上传码表即可展现</blockquote></h3>
+ 
+                    <input ref="file" type="file" name="fileUper"  class="join-btn">
                 </div>
-                <div>
-                    <h3>下载方式2：</h3>
-                </div>
-                <div> 
-                    <button class="download-btn">网盘下载</button>
-                </div>
-                <div>
-                    <h3>下载方式3：QQ群下载</h3>
-                </div>
-                <div> 
-                    <button class="join-btn">新手村</button>
-                    <button class="join-btn">虎码总群</button>
-                    <blockquote>点击上方按钮的加群获取资源</blockquote>
-                </div>
-                
+                <div id="text"></div>
     
             </div>
             
@@ -137,11 +135,7 @@
     </div>
   </div>
  <script>
-    $('.download-btn').click(function(){
-  // window.location.href = './rec.html'
-  $(location).attr('href', 'http://huma.ysepan.com/')
-  console.log(123)
-})
+    
 
  </script>
 </body>

@@ -1,9 +1,15 @@
 .my-brand{
-    width: 134px;
+    width: 84px;
     height: auto;
+    margin-top: 10px;
     display: inline-block;
 }
-
+.navbar-brand{
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
 
 .navbar {
     margin-bottom: 0 !important;

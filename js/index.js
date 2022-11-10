@@ -11,7 +11,6 @@ $(document).ready(function () {
 $('.begin-btn').click(function(){
   // window.location.href = './rec.html'
   $(location).attr('href', './study.html')
-  console.log(123)
 })
 
 $('.navbar').children().eq(0).addClass('navbar-a-hover');

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="alternate icon" class="js-site-favicon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/download.css">
+  <!-- <link rel="stylesheet" href="css/study.css"> -->
+  <!-- <link rel="stylesheet" href="css/practise.css"> -->
+  <!-- 引入jQuery模块 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+  <!-- 引入bootstrap.js模块 -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/common.js"></script>
+  <script src="js/tools.js"></script>
+    <title>实用工具</title>
+
+</head>
+
+
+<body>
+
+<div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+              <img alt="Brand" src="images/brand.png" class="my-brand">
+            </a>
+          </div>
+    
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav module-left">
+              <li><a href="index.html">首页 </a></li>
+              <li><a href="study.html" >学习路线</a></li>
+              <li><a href="study.html"  >字根练习<span class="sr-only"></span></a></li>
+              <li><a href="search.html">拆分查询<span class="sr-only"></span></a></li>
+    
+              <li><a href="download.html">资源下载<span class="sr-only"></span></a></li>
+              <li><a href="tools.html" class="selected">实用工具<span class="sr-only"></span></a></li>
+    
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  加入群聊<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  
+              <li><a href="https://jq.qq.com/?_wv=1027&k=9HbSlI3Z">虎码新手村</a></li>
+              <li><a href="https://jq.qq.com/?_wv=1027&k=gLduUVig">虎码官方群</a></li>
+                  
+                  <!-- <li role="separator" class="divider"></li> -->
+                </ul>
+              </li>
+              <li><a href="#"><span class="sr-only">(current)</span></a></li>
+              <li><a href="#"></a></li>
+    
+            </ul>
+            <ul class="nav navbar-nav navbar-right module-right logbtn-box">
+              <li><a href="login.html" class="login-btn brand-btn">登录</a></li>
+              <li><a href="register.html" class="sign_up-btn brand-btn">注册</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right module-right hidden">
+        <li class="hello"><span  ><span id="loginTime"></span>，<span id="uname"></span><span><a href="#" id="logout"> 注销</a></span></span></li>
+                <a href="assess.html" target="_blank">评测网站</a>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    单字<input id="input_zi" type="file" onchange="readFile('char')">&nbsp
+    词组<input id="input_ci" type="file" onchange="readFile('word')">
+
+    <button onclick="getList('char')">单字列表</button>
+    &nbsp
+    <button onclick="getList('word')">词组列表</button>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+
+    <span id="list"></span>
+</div>
+<hr>
+
+<div id="show"></div>
+
+
+</body>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
+
+<script>
+    const input_zi = document.getElementById("input_zi");
+    const input_ci = document.getElementById("input_ci");
+    const listEle = document.getElementById("list");
+    const showEle = document.getElementById("show");
+
+    function getList(typ) {
+        $.ajax({
+            type: "GET",
+            url: "/cepb/list?type=" + typ,
+            // url: "http://localhost/assess/list?type=" + typ,
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            success: function (res) {
+                let data = res["data"]["result"];
+                let innerHTML = "";
+                for (let i = 0; i < data.length; i++) {
+                    let obj = data[i];
+                    let schema = obj["schema"];
+                    let url = obj["url"];
+                    let html = "<button onclick=\"get('";
+                    html += url;
+                    html += "')\">";
+                    html += schema;
+                    html += "</button>";
+
+                    innerHTML += html;
+                }
+                listEle.innerHTML = innerHTML;
+            },
+            error: function (msg) {
+                console.log(msg);
+            }
+        })
+    }
+
+    function get(url) {
+        $.ajax({
+            type: "GET",
+            url: url,
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            success: function (res) {
+                console.log(res);
+                showEle.innerHTML = res["data"]["result"];
+            },
+            error: function (msg) {
+                console.log(msg);
+            }
+        })
+    }
+
+    function readFile(typ) {
+        const reader = new FileReader();
+        let firstFile = typ === 'char' ? input_zi.files[0] : input_ci.files[0];
+        let fileName = firstFile.name;
+        reader.readAsText(firstFile, 'utf8');
+
+        reader.onload = () => {
+            let name = fileName.split('.')[0];
+            let result = reader.result;
+            let lines = result.split('\n');
+
+            let lineList = [];
+            for (let i = 0; i < lines.length; i++) {
+                let list = lines[i].split('\t');
+                if (list.length >= 2) {
+                    let zi = list[0];
+                    if (zi.length < 2) {
+                        lineList.push(lines[i])
+                    }
+                }
+            }
+
+            getResult(typ, name, lineList);
+        };
+    }
+
+    function getResult(typ, name, lineList) {
+        $.ajax({
+            type: "POST",
+            url: "/cepb",
+            // url: "http://localhost/assess",
+            dataType: 'json',
+            data: {
+                type: typ,
+                schema: name,
+                content: lineList,
+            },
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            success: function (res) {
+                let code = res["code"];
+                let msg = res["msg"];
+                if (code !== 0) {
+                    alert(msg);
+                } else {
+                    let data = res["data"];
+                    showEle.innerHTML = data["result"];
+                }
+            },
+            error: function (msg) {
+                console.log(msg);
+            }
+        })
+    }
+
+</script>
+
+</html>
