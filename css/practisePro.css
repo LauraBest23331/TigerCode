@@ -104,10 +104,6 @@
 .chapion{
     width: 30px;
 }
-#input {
-    font-size: 25px !important;
-    font-weight: 600;
-}
 .colorHu div{
     color: #f6c456 !important;
 }
@@ -116,29 +112,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-.text-sm{
-    font-size: 20px;
-    font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif !important;
-  
-    letter-spacing: 2px;
-    font-weight: 600 !important;
-    color: #b5223a !important; 
-}
-.text-sm2{
-    font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif !important;
-  
-    font-size: 17px;
-    font-weight: 600 !important;
-    color: #0c79f5 !important; 
-}
-@media (min-width: 1080px) {
-    .text-sm{
-        font-size: 30px;
-    }
-    .text-sm2{
-        font-size: 30px;
-    }   
 }
 .color-box>div>.trank {
     font-weight: 600;

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- <link rel="stylesheet" href="css/study.css"> -->
+
+  <!-- 引入jQuery模块 -->
+  
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+  <!-- 引入bootstrap.js模块 -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <title>小鹤双拼入门练习</title>
+</head>
+
+<body>
+
+  <div class="main-content">
+    <div class="container">
+      <div class="row mt-10">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 pt-20 bg-white primary-shadow study">
+            <div class="h-100">
+                <div class="top">
+                    <div class="floatleft">
+                       
+                      <button onclick="goBack()" class="btn btn-warning">返回</button>
+                        
+                        
+                    </div>
+                
+                
+                
+                    <div class="floatright">
+                      <span>
+                        &nbsp;当前:<strong id="cur">1</strong>&nbsp;最高:<strong id="max">1</strong>&nbsp;总数:<strong id="all">241</strong>&nbsp;积分:<strong id="score">0</strong>
+                      </span>
+                      <!-- <label onchange="changeMainRoot()">
+                        <input  type="checkbox" id="main-root">
+                        仅练习大码
+                      </label> -->
+                      <button onclick="clearProgress()" class="btn btn-danger">重置进度</button>
+                    </div>
+                
+                </div>
+                <div class="center80">
+                    <p id="root">口〇</p>
+                    <p id="code"></p>
+            
+                    <input id="input" class="form-control" style="display: inline-block;" type="text" oninput="inputChanged()">
+            
+            
+                <p id="tip">实在想不起来时按空格</p>
+                <progress id="progress" value="1" max="241"></progress>
+              
+                  <div class="color-box hidden login-color-box">
+                    <div class="box1">
+                      <div class="title">当前排行</div>
+                      <div class="trank"><span class="ranknum"></span></div>
+                    </div>
+                    <div class="box2">
+                      <div class="title">距上一名分差</div>
+                      <div class="trank"><span class="diffScore"></span></div>
+                    </div>
+                    <div class="box3">
+                      <div class="title">目前段位</div>
+                      <div class="trank"><span class="tdrww"></span></div>
+                    </div>
+                    <div class="box4">
+                      <div class="title">最高连击</div>
+                      <div class="trank"><span class="tchi"></span></div>
+                    </div>
+                  </div>
+                  <div class="color-box unlogin-color-box">
+                    <div class="box5">
+                      <div class="title">当前模式</div>
+                      <div class="trank">单机练习</div>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    
+    </div>
+  </div>
+
+  <style>
+
+
+
+#root {
+  font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif !important;
+  
+
+    margin: auto;
+    font-size: 5rem;
+    text-align: center;
+    width: 100%;
+}
+
+#code {
+    margin: auto;
+    font-size: 3.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+    #tip {
+        font-size: 13px;
+        margin-top: 1.5rem;
+    }
+
+
+
+    .center80 {
+        margin: auto;
+        position: absolute;
+        top: 20%;
+        font-size: 30px;
+
+
+        text-align: center;
+        width: 100%;
+
+    }
+
+    .top {
+        margin: auto;
+
+        text-align: center;
+        width: 100%;	
+        font-size: small;		
+    }
+
+
+    .floatleft {
+        margin: 0.3rem;
+        text-align: center;
+        float: left;
+    
+    }
+
+
+
+    .floatright {
+        margin: 0.3rem;
+        text-align: center;
+        float: right;
+        clear: right;
+
+    }
+
+
+
+    #input {
+
+        padding: 0.3rem;
+        font-size: 1rem;
+        text-align: center;
+        width: 20%;
+    }
+
+    .center80 {
+    margin: auto;
+    position: absolute;
+    top: 36%;
+    text-align: center;
+    width: 100%;
+}
+.h-100 {
+    height: 720px;
+    position: relative;
+}
+.floatright {
+    font-weight: 600;
+    font-size: 15px;
+}
+.drww-box {
+    min-height: 80vh;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+.color-box{
+    display:  flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.color-box>div{
+    width: 40%;
+    border-radius: 19px;
+    height: 100px;
+    margin-top: 20px;
+    box-shadow: 1px 3px 7px #dddddd;
+}
+.mini_title{
+    display: flex;
+    justify-content: center;
+    height: 20px;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: #666666;
+}
+.shadow-md{
+    box-shadow: 1px 2px 3px #666666;
+}
+.rank-header{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    font-size: 15px;
+    font-weight: 600;
+    box-sizing: border-box;
+    padding: 0 10px;
+    height: 50px;
+    width: 100%;
+    box-shadow: 1px 2px 3px #dddddd;
+}
+.mt-10{
+    margin-top: 10px;
+}
+.he1 ,.he2 ,.he3, .he4 {
+    justify-content: center;
+    align-items: center;
+    display: flex;   
+    
+}
+.he1 {
+    width: 20%;
+}
+.he2 {
+    width: 30%;
+    
+}.he3{
+    width: 20%;
+    
+}.he4 {
+    width: 30%;
+    
+}
+.he5 {
+    width: 30%;
+
+}
+.rank-body {
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+    border-bottom: 1px solid #dddddd;
+}
+.rank-body .he1 ,.rank-body .he2 ,.rank-body .he3,.rank-body .he4{
+    color: #333;
+    font-weight: 600;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex; 
+}
+.chapion{
+    width: 30px;
+}
+.colorHu div{
+    color: #f6c456 !important;
+}
+.color-box>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.color-box>div>.trank {
+    font-weight: 600;
+}
+.color-box>.box1{
+    background-image: linear-gradient(to bottom right, #f57b09, #ffd038);
+
+    color: #fff;
+}
+.color-box>.box2{
+    background-image: linear-gradient(to bottom right, #ffd038,  #f57b09);
+
+    color: #fff;
+}
+.color-box>.box3{
+    background-image: linear-gradient(to bottom right, #62a3bd, #35f3c7);
+
+
+    color: #fff;
+}
+.color-box>.box4{
+    background-image: linear-gradient(to bottom right, #fb686a, #fda5a6);
+
+    color: #fff;
+}
+.color-box>.box5{
+    background-image: linear-gradient(to bottom right, #f76692, #eb295e);
+
+    color: #fff;
+}
+    </style>
+    
+    <script>
+      
+
+// const onlyRootEle = document.getElementById("main-root");
+const curEle = document.getElementById("cur");
+const maxEle = document.getElementById("max");
+const allEle = document.getElementById("all");
+const rootEle = document.getElementById("root");
+const codeEle = document.getElementById("code");
+const inputEle = document.getElementById("input");
+const progressEle = document.getElementById("progress");
+const host = 'https://tiger-code.com'
+const trank = []
+let loginUser = {}
+let score = 0;
+let account = ''
+let onlyMain = true;
+let checkLength = 1;
+let successCount = 0
+let topChi = 0
+let nowIndex = -1
+let failCount = 0
+let diffScore = -1
+let mode = 0
+function changeMainRoot() {
+    onlyMain = onlyRootEle.checked;
+    if (codeEle.textContent !== "") {
+        codeEle.textContent = onlyMain ? root_code[index[0]].substring(0, 1) : root_code[index[0]];
+    }
+    inputEle.value = "";
+    if (mode == 0) {
+        mode = 1
+    }else {
+        mode = 0
+    }
+    console.log('模式'+mode);
+    checkLength = onlyMain ? 1 : 2;
+}
+
+const root_char = ["sh","zh","ch","ei","üe","uan","ui","iu","uang","ie","iang","ai","ian","uo","ao","un","in","eng","ang","ong","en","ü","ue","ou","ua","iao","an","ia","ing","iong","uai"]
+const root_code =["u","v","i","w","t","r","v","q","l","p","l","d","m","o","c","y","b","g","h","s","f","v","t","z","x","n","j","x","k","s","k"]
+const total = root_char.length;// 字根总数
+let pcount = 0
+let maxProgress = 0;
+
+let index = new Array(total); // 字根队列
+let count = new Array(total); // 字根答对次数
+
+// 这两个放在异步请求的结果里调用
+// initCounter(); // 初始化进度
+// showQuest();
+getProgress();
+
+
+function fhdz(func, time,count) {
+    let timer
+    return function() {
+        let _this = this
+        clearTimeout(timer)
+        timer = setTimeout(()=>{
+            func(count)
+        }, time)
+    }
+}
+function debounce(fn, delay) {
+    var timer = null
+    return function () {
+        if (timer != null) {
+            console.log('节流中');
+            clearInterval(timer)
+        }
+        timer = setInterval(fn, delay)
+    }
+}
+let timer = null
+function changePoints(count) {
+    if (mode == 1) {
+        $('#score').text(score)
+        $('#tip').text('当前模式不支持参与排行')   
+        return 
+    }
+    score = score+count*2
+    $('.tchi').text(topChi+'🐔')
+
+    pcount = count
+    console.log("分数"+pcount*2);
+
+    $('#tip').text('当前连击'+successCount+'，'+count+'倍积分')
+    $('#score').text(score)
+    return
+    if (timer != null) {
+        clearTimeout(timer)
+    }
+    timer = setTimeout(()=>{
+        saveScore()
+    }, 3000)
+}
+
+function computeSuc() {
+    if (successCount > 1000) {
+        return 1000
+    }else if (successCount > 500) {
+        return 100
+    }else if (successCount > 300) {
+        return 50
+    }else if (successCount > 200) {
+        return 30
+    }  else if (successCount > 100) {
+        return 20
+    }else if (successCount > 10) {
+        return 2
+    }else {
+        return 1
+    }
+
+}
+function computeFail() {
+    if (score < 600) {
+        return 0
+    }
+    else if (score < 4500) {
+        return -1
+    }
+    else if (score < 9000) {
+        return -2
+    }else if (score < 21000) {
+        return -5
+    }else if (score < 51000) {
+        return -10
+    }else if (score < 110000) {
+        return -20
+    }else if (score >=110001) {
+        return -2000
+    }else  {
+        return -1
+    }
+}
+function inputChanged() {
+    // 只要有空格就是错的
+
+    if (input.value.indexOf(' ') > -1) {
+        count[0] = -1;
+        showQuest();
+        successCount = 0
+        failCount++;
+
+            changePoints(computeFail())
+
+
+
+    }
+    if (inputEle.value.length >= checkLength) {
+        let oldValue = inputEle.value.substring(0, checkLength);
+        // 答对，该字根进度加1
+        if (oldValue === root_code[index[0]].toLowerCase().substring(0, checkLength)) {
+            count[0]++;
+            successCount++;
+            failCount = 0;
+            nextRoot();
+
+                changePoints(computeSuc())
+            if (successCount > topChi) {
+                topChi = successCount
+            }
+
+
+        }
+        // 答错，该字根进度置为-1
+        else {
+            count[0] = -1;
+            failCount++;
+            showQuest();
+            successCount = 0
+
+
+            changePoints(computeFail())
+
+
+
+         
+          
+        }
+
+
+    }
+}
+function goBack() {
+    $(location).attr('href', './tools.html')
+
+}
+
+function initCounter()  //初始化进度，所有字根初始学习进度为-1
+{
+    for (let i = 0; i < total; i++) {
+        count[i] = -1;
+        index[i] = i;
+    }
+}
+
+function showQuest() // 显示问题
+{
+    rootEle.textContent = root_char[index[0]];
+    if (count[0] === -1) // 第一次直接显示答案
+    {
+        codeEle.textContent =  root_code[index[0]];
+    } else {
+        codeEle.textContent = "";
+    }
+    inputEle.value = ""; // 清空输入框
+
+    maxProgress = Math.max(maxProgress, index[0]);
+
+    curEle.textContent = (index[0] + 1).toString();
+    maxEle.textContent = (maxProgress + 1).toString();
+    allEle.textContent = total.toString();
+    progressEle.value = (maxProgress + 1).toString();
+    progressEle.max = total.toString();
+}
+
+function nextRoot() // 下一个字根显示
+{
+    let tmp1;
+    let tmp2;
+    let move = 0;
+
+    // 根据上一个字根的进度，将答对的字根移至字根队列后面
+    if (count[0] === 0) {
+        count[0] = 1;
+        move = 2;
+    } else if (count[0] === 1) {
+        count[0] = 2;
+        move = 4;
+    } else if (count[0] === 2) {
+        count[0] = 3;
+        move = 8;
+    } else if (count[0] === 3) {
+        count[0] = 4;
+        move = 12;
+    } else if (count[0] === 4) {
+        count[0] = 5;
+        move = 20;
+    } else if (count[0] === 5) {
+        count[0] = 6;
+        move = 30;
+    } else if (count[0] === 6) {
+        count[0] = 7;
+        move = 60;
+    } else if (count[0] === 7) {
+        count[0] = 8;
+        move = 100;
+    } else if (count[0] >= 8) {
+        count[0] = 8;
+        move = total - 1;
+    }
+
+    tmp1 = index[0];
+    tmp2 = count[0];
+    move = Math.min(move, total- 1);
+    for (let i = 0; i < move; i++) {
+        index[i] = index[i + 1];
+        count[i] = count[i + 1];
+    }
+    index[move] = tmp1;
+    count[move] = tmp2;
+    saveProgress();
+    showQuest();
+}
+
+
+function getProgress() {
+    let progress = JSON.parse(window.localStorage.getItem("progress1"));
+    if (!progress) {
+        initCounter();
+        saveProgress();
+    } else {
+        index = progress.index;
+        count = progress.count;
+    }
+    showQuest();
+}
+
+
+function saveProgress() {
+    window.localStorage.setItem("progress1", JSON.stringify({
+        "index": index,
+        "count": count
+    }));
+}
+
+function clearProgress() {
+    localStorage.removeItem("progress1");
+    initCounter();
+    saveProgress();
+    maxProgress = 0;
+    showQuest();
+    index[0] + 1
+    if (index[0] + 1 <= 240) {
+
+        successCount = 0
+        changePoints(computeFail())
+    }
+
+
+}
+
+
+    </script>
+    <script id="allow-copy_script">(function e(){var e=!1;document.addEventListener("allow_copy",(function(t){e=t.detail.unlock}));var t=["copy","cut","contextmenu","selectstart","mousedown","mouseup","mousemove","keydown","keypress","keyup"],n=function(t){e&&(t.stopPropagation(),t.stopImmediatePropagation&&t.stopImmediatePropagation())};t.forEach((function(e){document.documentElement.addEventListener(e,n,{capture:!0})}))})()</script>
+
+</body>
+</html>

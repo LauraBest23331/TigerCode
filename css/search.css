@@ -17,20 +17,34 @@
 }
 .fb-6 {
     font-weight: 600;
+    margin-left: 10px;
     font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif;
 }
 .fc-gray{
-    color: #666;
+    color: #b5223a;
+    font-size: 15px;
+    font-weight: 600 !important;
+
 }
 .result-box {
+    font-weight: 500;
+    border-radius: 20px;
     width: 100%;
-    height: 100px;
+    margin-top: 20px;
+    height: 230px;
     box-shadow: 1px 2px 3px #ddd;
+    color: #b5223a;
+    background-image: linear-gradient(to bottom right,#ffebea, #ffebea);
+    font-size: 18px;
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 40px;
     flex-direction: column;
     align-items: flex-start;
+    
+}
+.font-gray-400{
+    color: #666 !important;
 }
 @media (max-width: 454px) {
     .result{
@@ -41,5 +55,14 @@
     }
     .pt-10 {
         padding-top: 10px;
+    }
+    .result-box {
+        padding-right: 10px;
+    }
+}
+@media (min-width: 1080px) {
+    .result-box {
+        padding: 10px;
+        width: 300px;
     }
 }

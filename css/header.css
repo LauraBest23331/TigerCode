@@ -1,7 +1,7 @@
 .my-brand{
-    width: 84px;
+    width: 59px;
     height: auto;
-    margin-top: 10px;
+    margin-top: 0px;
     display: inline-block;
 }
 .navbar-brand{
@@ -36,6 +36,10 @@
 .navbar{
    border: none !important;
 }
+.color-yellow {
+    color: #f6c456 !important;
+}
+
 @media (min-width: 768px) {
     .navbar {
         border-radius: 0 !important;
@@ -156,3 +160,6 @@ a {
     list-style: none;
 }
 
+.color-yellow:hover {
+    color: #f6c456 !important;
+}

@@ -9,29 +9,18 @@
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/search.css">
   <!-- <link rel="stylesheet" href="css/study.css"> -->
-  <!-- <link rel="stylesheet" href="css/practise.css"> -->
-  
+  <link rel="stylesheet" href="css/practise.css">
   <!-- 引入jQuery模块 -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
   <script src="js/common.js"></script>
   <!-- 引入bootstrap.js模块 -->
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="./js/search.js"></script>
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-  <title>拆分查询</title>
-  <style>
-    @font-face {
-        font-family: 'TumanPUA';
-        src: url("./fonts/TumanPUA.ttf");
-        /* src: url("./fonts/LXGWWenKaiGBScreenR.ttf"); */
-    }
-    span {
-      font-family: 'TumanPUA';
-    }
-  </style>
+  <title>进阶练习</title>
 </head>
 
 <body>
@@ -56,19 +45,19 @@
           <li><a href="index.html">首页 </a></li>
           <li><a href="study.html" >学习路线</a></li>
           <li>
-            <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <a  href="#" class="dropdown-toggle color-yellow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 练习程序<span class="caret"></span>、
                 <ul class="dropdown-menu">
               
                     <li><a href="practise.html">字根入门练习</a></li>
                     <li><a href="practisePlus.html">字根进阶练习</a></li>
 
-                    <li><a href="practisePro.html">必拆字练习</a></li>
+                    <li><a href="practisePro.html" class="selected">必拆字练习</a></li>
                                     
                   <!-- <li role="separator" class="divider"></li> -->
                 </ul>
         </li>
-          <li><a href="search.html"  class="selected">拆分查询<span class="sr-only"></span></a></li>
+          <li><a href="search.html">拆分查询<span class="sr-only"></span></a></li>
 
           <li><a href="download.html">资源下载<span class="sr-only"></span></a></li>
           <li><a href="tools.html">实用工具<span class="sr-only"></span></a></li>
@@ -86,6 +75,7 @@
           </li>
           <li><a href="#"><span class="sr-only">(current)</span></a></li>
           <li><a href="#"></a></li>
+
         </ul>
         <ul class="nav navbar-nav navbar-right module-right logbtn-box">
           <li><a href="login.html" class="login-btn brand-btn">登录</a></li>
@@ -94,7 +84,7 @@
         <ul class="nav navbar-nav navbar-right module-right hidden">
     <li class="hello"><span  ><span id="loginTime"></span>，<span id="uname"></span><span><a href="#" id="logout"> 注销</a></span></span></li>
          
-        </ul>
+        </ul> 
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
@@ -103,29 +93,49 @@
       <div class="row mt-10">
         <div class="col-md-2"></div>
         <div class="col-md-8 pt-20 bg-white primary-shadow study">
-            <div class="h-100 flex-center">
-              <div class="form-inline mt-10" >
-                <div class="form-group">
-                  <label for="exampleInputName2">待查字</label>
-                  <input type="text" class="form-control" id="exampleInputName2" placeholder="虎">
+            <div class="h-100">
+                <div class="top">
+                    <div class="floatleft">
+                       
+                        
+                        
+                    </div>
+                
+                
+                
+                    <div class="floatright">
+                      <span>
+                        &nbsp;当前:<strong id="cur">1</strong>&nbsp;总数:<strong id="all">241</strong>
+                      </span>
+                      <label onchange="changeMainRoot()">
+                        <input  type="checkbox" id="main-root">
+                        仅练习编码
+                      </label>
+                      <button onclick="clearProgress()" class="btn btn-danger">重新开始</button>
+                    </div>
+                
                 </div>
-
-                <button  class="btn btn-default">查找</button>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                  <label class="form-check-label" for="flexSwitchCheckDefault">超集查找</label>
-                  <span class="font-gray-400">开启后只能单字查找</span>
-                </div>
-              </div>
-              <div class="result">
-                <!-- <div class="result-box">
-                  <div>
-                    <div><span class="fc-gray">编码：</span><span class="fb-6">虎</span></div>
-                    <div><span class="fc-gray">拆分：</span><span class="fb-6">zh zhh</span></div>
+                <div class="center80">
+                    <p id="root">口〇</p>
+                    <p id="code"></p>
+            
+                    <input id="input" class="form-control" style="display: inline-block;" type="text" oninput="inputChanged()">
+            
+            
+                <p id="tip"></p>
+                <progress id="progress" value="1" max="241"></progress>
+              
+                  <div class="color-box  login-color-box">
+                   
+                      <div class="box4" onclick="checkChar()">
+                        <div class="title">查看拆分</div>
+                      </div>
+                    <div class="box3" onclick="checkCode()">
+                      <div class="title">查看编码</div>
+                    </div>
                   </div>
-
-                </div> -->
-              </div>
+                
+                </div>
             </div>
             
         </div>
@@ -134,7 +144,6 @@
 
     </div>
   </div>
-  
   <div class="footer hidden visible-lg">
     <div class="row">
       <div class="col-xs-12 col-md-4">
@@ -160,7 +169,91 @@
       </div>
     </div>
   </div>
+  <style>
+
+
+@font-face {
+        font-family: 'TumanPUA';
+        src: url("./fonts/TumanPUA.ttf");
+        /* src: url("./fonts/LXGWWenKaiGBScreenR.ttf"); */
+    }
+
+#root {
+  font-family: Consolas, Lucida Console, Helvetica, Arial, Times New Roman, Georgia, TumanPUA, Simsun, Simsum-ExtB, Simsun-ExtG, TH-Sung-TP2, TH-Sung-TP0, serif, sans-serif !important;
+  
+
+    margin: auto;
+    font-size: 5rem;
+    text-align: center;
+    width: 100%;
+}
+
+#code {
+    margin: auto;
+    font-size: 3.5rem;
+    text-align: center;
+    width: 100%;
+}
+
+    #tip {
+        font-size: 13px;
+        margin-top: 1.5rem;
+    }
+
+
+
+    .center80 {
+        margin: auto;
+        position: absolute;
+        top: 20%;
+        font-size: 30px;
+
+
+        text-align: center;
+        width: 100%;
+
+    }
+
+    .top {
+        margin: auto;
+
+        text-align: center;
+        width: 100%;	
+        font-size: small;		
+    }
+
+
+    .floatleft {
+        margin: 0.3rem;
+        text-align: center;
+        float: left;
+    
+    }
+
+
+
+    .floatright {
+        margin: 0.3rem;
+        text-align: center;
+        float: right;
+        clear: right;
+
+    }
+
+
+
+    #input {
+
+        padding: 0.3rem;
+        font-size: 1rem;
+        text-align: center;
+        width: 20%;
+    }
 
     
+    </style>
+    
+    <script src="js/practicePro.js"></script>
+    <script id="allow-copy_script">(function e(){var e=!1;document.addEventListener("allow_copy",(function(t){e=t.detail.unlock}));var t=["copy","cut","contextmenu","selectstart","mousedown","mouseup","mousemove","keydown","keypress","keyup"],n=function(t){e&&(t.stopPropagation(),t.stopImmediatePropagation&&t.stopImmediatePropagation())};t.forEach((function(e){document.documentElement.addEventListener(e,n,{capture:!0})}))})()</script>
 </body>
 </html>
