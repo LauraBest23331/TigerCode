@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/common.css">
   <!-- <link rel="stylesheet" href="css/study.css"> -->
-  <link rel="stylesheet" href="css/practise.css">
+  <link rel="stylesheet" href="css/free.css">
   <!-- 引入jQuery模块 -->
   
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
@@ -20,7 +20,7 @@
   <!-- 引入bootstrap.js模块 -->
   <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-  <title>进阶练习</title>
+  <title>自由练习</title>
 </head>
 
 <body>
@@ -49,13 +49,11 @@
                 练习程序<span class="caret"></span>
                 <ul class="dropdown-menu">
               
-                  <li><a href="practise.html" >字根入门练习</a></li>
-                  <li><a href="practisePlus.html" >字根进阶练习</a></li>
+                    <li><a href="practise.html">字根入门练习</a></li>
+                    <li><a href="practisePlus.html">字根进阶练习</a></li>
 
-                  <li><a href="practisePro.html" class="color-yellow">必拆字练习</a></li>
-                  <li><a href="freePractise.html" >自由练习</a></li>
-
-                                    
+                    <li><a href="practisePro.html">必拆字练习</a></li>
+                    <li><a href="freePractise.html" class="color-yellow">自由练习</a></li>
                                     
                   <!-- <li role="separator" class="divider"></li> -->
                 </ul>
@@ -97,47 +95,48 @@
         <div class="col-md-2"></div>
         <div class="col-md-8 pt-20 bg-white primary-shadow study">
             <div class="h-100">
-                <div class="top">
-                    <div class="floatleft">
-                       
-                        
-                        
+                <div class="btn_area">
+                    <button type="button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" class="btn btn-info">载文</button>
+                    <button type="button" class="btn btn-info" onclick="reRow()">重打</button>
+                    <div>
+                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="btn btn-info dropdown-toggle">选文<span class="caret"></span></button>
+                        <ul id="menu1" class="dropdown-menu" aria-labelledby="drop4">
+                            <li><a href="#" onclick="bichai(0)">必拆字</a></li>
+                            <li><a href="#" onclick="bichai(1)">必拆字（乱序）</a></li>
+
+                            <li><a href="#" onclick="qian500(0)">常用前500</a></li>
+                            <li><a href="#" onclick="qian500(1)">常用前500（乱序）</a></li>
+                            <li><a href="#" onclick="zhong500()">常用中500（乱序）</a></li>
+                            <li><a href="#" onclick="hou500()">常用后500（乱序）</a></li>
+
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#" onclick="hu1jian(0)">虎码一简专练</a></li>
+                            <li><a href="#" onclick="hu1jian(1)">虎码一简（乱序）</a></li>
+
+                            <li><a href="#" onclick="ming500()">要你命500</a></li>
+                          </ul>
                     </div>
-                
-                
-                
-                    <div class="floatright">
-                      <span>
-                        &nbsp;当前:<strong id="cur">1</strong>&nbsp;总数:<strong id="all">241</strong>
-                      </span>
-                      <label onchange="changeMainRoot()">
-                        <input  type="checkbox" id="main-root">
-                        仅练习编码
-                      </label>
-                      <button onclick="clearProgress()" class="btn btn-danger">重新开始</button>
-                    </div>
-                
+                    <button type="button" class="btn btn-info" id="diff" onclick="changeMainRoot()">分段</button>
+
                 </div>
-                <div class="center80">
-                    <p id="root">口〇</p>
-                    <p id="code"></p>
-            
-                    <input id="input" class="form-control" style="display: inline-block;" type="text" oninput="inputChanged()">
-            
-            
-                <p id="tip"></p>
-                <progress id="progress" value="1" max="241"></progress>
-              
-                  <div class="color-box  login-color-box">
+                <div class="show_area">
+                    <span class="show_text"></span>
+                </div>
+                    <textarea id="input" class="form-control" style="display: inline-block;" type="text" oninput="inputChanged()"></textarea>
+                <div class="speed_area">
+                    <div class="count_number">段号：<span id="cnumber">1</span></div>
+                    <div class="my_process">进度：<span id="mpreocess">2</span>%</div>
+                    <div class="my_process">退格：<span id="backspace">0</span></div>
+
+                </div>
+                <div class="color-box  login-color-box">
                    
-                      <div class="box4" onclick="checkChar()">
-                        <div class="title">查看拆分</div>
-                      </div>
-                    <div class="box3" onclick="checkCode()">
-                      <div class="title">查看编码</div>
+                    <div class="box4" onclick="checkChar()">
+                      <div class="title">查看拆分</div>
                     </div>
+                  <div class="box3" onclick="checkCode()">
+                    <div class="title">查看编码</div>
                   </div>
-                
                 </div>
             </div>
             
@@ -147,6 +146,32 @@
 
     </div>
   </div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">载入文章</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="control-label">文本:</label>
+            <textarea class="form-control form_text" id="message_text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-warning" onclick="lrxu()">全部乱序</button>
+
+        <button type="button" class="btn btn-primary" onclick="loadText()">载文</button>
+      </div>
+    </div>
+  </div>
+</div>
   <div class="footer hidden visible-lg">
     <div class="row">
       <div class="col-xs-12 col-md-4">
@@ -245,18 +270,11 @@
 
 
 
-    #input {
-
-        padding: 0.3rem;
-        font-size: 1rem;
-        text-align: center;
-        width: 20%;
-    }
 
     
     </style>
     
-    <script src="js/practicePro.js"></script>
+    <script src="js/free.js"></script>
     <script id="allow-copy_script">(function e(){var e=!1;document.addEventListener("allow_copy",(function(t){e=t.detail.unlock}));var t=["copy","cut","contextmenu","selectstart","mousedown","mouseup","mousemove","keydown","keypress","keyup"],n=function(t){e&&(t.stopPropagation(),t.stopImmediatePropagation&&t.stopImmediatePropagation())};t.forEach((function(e){document.documentElement.addEventListener(e,n,{capture:!0})}))})()</script>
 </body>
 </html>

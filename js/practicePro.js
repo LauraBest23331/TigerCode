@@ -51,6 +51,12 @@ function checkCode() {
 function inputChanged() {
     // 只要有空格就是错的
     let value = input.value
+    if (input.value.indexOf(' ') > -1) {
+        checkChar()
+        checkCode()
+        $('#input').val('')
+        return
+    }
     if (codeMode) {
         if (value == fcode) {
             count[0]++;
