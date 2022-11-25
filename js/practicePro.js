@@ -21,13 +21,14 @@ let failCount = 0
 let diffScore = -1
 let mode = 0
 let nowOrdata = {}
-const root_char = '疒疗宁成买今迅断扎丑扬与专蚌邦青堇勤缶窑卸魂魅忆交冥耒耗扪问盘版寐状北鼎鼐敌舍朱昧张弱义区丈驳寻尹录互虐印迎乐孵卯昴卿留湎妆氏纸聿律唐争剚妻芸充梳坏融贵飞居炎变严亦杰技吸卢眉假亚扣〇童眠黾绳抚既油杆视休棘亲坎须勿午乞穴空池敝唇振骨猾喎百丞刁孑沮县标礻礼荒曷死夙餐睿搞京亭膏狗申仕圣围祥美噗差幸芈扒平梁关善兴登祭失券容仔孔务复麸孜敲喜鼓息性添栅扁典丶玉刃春尺痕良即纠垃产船系细矛抒乡雍玄兹幽抖合令险论龠仄亻什豪缘汆耐咳官丸究抛拇永冰承没学益求聚鳏私勇悬惠毋毐贯苦开鼻艸啮需妨廿世燕共重垂歼姓卅带名岁卌舞芽吧夭亏仁晃耀庐所豸貌冂内冇凶周凹兕囧辆突犭独拓甫捕隔横勺包汇匡决巨吗汁截囊宏于戊咸臧越旺宰辩员驯州流巡粼夏咱冗风颃旦昔汩冒临矩矣优尬帐肆套召叨坚删帅渊万辨黎先允沈鸩顽戏或栈鹅烧墨嘿默代式武臼舀舆屎鬯鼬邋促跟街珩徒臣姬茸最阱塞佬孝相具直件特告挤齑餍喰饮果亩辈扉乏芝吊囗困亨披托东切殳设竹答监瓷瓯奴劲出逆发屯顿洛正此步徙捷甲匣办夯躺掌尝詹该队邓拂弟姊革勒依哀衤被农畏旅听丘兵乒乓袭丿么壬旋定疏兰漏雷角甬伯卑退扛难雁集拿打看段半击那判褎廷延旨呲化比以已己记凯降年尾毯扔凸汽氧禸禺噙仙巷祀吝斐洒贾朋肯丽夜然昨冫冻脊兆头彳待亍宋深龟阄兔冤免伍鱼鲜衡像顷頁寡耰历后急久玺庄禾种乘余鹿麒鸣岛赖辣柬乌呜章韵黯抓采捋乳卜补上卡叔军轩墼孤爬致室窒曹蛐驷罒罗尔当练少酋奠厨壹某柑其甚虎唬搋虑淦鉴针釜叩卫仓顾呵哥磨嘛躬殷亠市丹扇栩戳习'
+const root_char = '疒疗宁成买今迅断扎丑扬与专蚌邦青堇勤缶窑卸魂魅忆交冥耒耗扪问盘牌爿寐状北鼎鼐敌舍朱昧张弱义区丈驳彐寻尹录互虐印迎乐孵卯昴卿留湎妆氏纸聿律唐争剚妻芸充梳坏融贵飞居炎兼孪严亦杰技吸卢眉假亚普扣〇童眠黾绳抚既油杆视休棘亲坎须勿午乞穴空池敝唇振骨猾喎百丞刁孑沮县标礻礼荒曷死夙粲睿搞京亭膏狗申仕圣围祥美噗差幸芈扒平梁关善兴凳祭失券容仔孔务复麸孜攴敲壴喜鼓息性添栅扁典丶玉刃春尺痕良即纠垃产船系细矛抒乡雍玄兹幽抖合令险论龠仄亻什豪缘汆耐咳官丸究抛拇永冰承没学益求聚鳏私勇悬惠毋毐贯苦开戒鼻艸啮需妨廿世燕共重垂歼姓卅带名岁卌舞芽吧夭亏仁晃耀庐所豸貌冂内冇凶周凹兕泱囧辆突犭猝拓甫捕鬲隔横勹勺包汇匡决巨冯汁截囊宏戎于戊咸臧越旺宰辩员驯州鎏巡粼夏咱冗风颃旦昔汩冒临矩矣优尬帐肆套召叨坚删帅渊万辨黎先允沈鸩顽戏或栈鹅烧墨嘿默代式武臼舀舆屎鬯鼬邋促跟街珩徒臣姬茸嘬阱塞佬孝相具直件牡告挤齑餍喰饣饮果亩辈扉乏芝吊囗困亨披托东切殳设竹答监瓷瓯奴劲出逆发屯顿洛正此步徙捷甲匣办夯躺掌尝詹讠谁队邓拂弟姊革勒依哀衤被农畏旅听丘兵乒乓袭丿么壬曳旋定疏兰漏雷角甬伯卑退扛难雁集拿扌打看段半击那判褎廴廷延旨呲化比以已己记凯降年毛娓毯扔凸汽氧禸禺噙仙巷祀吝斐洒贾朋肯丽夜燃昨冫冻脊兆头彳待亍宋深龟阄兔冤免伍鱼鲜衡像顷頁寡耰历卮急久玺庄禾种乘余鹿麒鸣岛赖辣柬乌呜章韵黯抓采捋乳浮卜补上卡叔军轩車墼孤爬致室窒曹蛐驷罒罗尔当练少酋奠厨壹某柑其甚虎唬搋虑淦鉴针釜叩卫仓顾呵哥磨嘛躬殷亠市丹扇栩戳习'
 const total = root_char.length;// 字根总数
 let pcount = 0
 let codeMode = false
 let maxProgress = 0;
 let codeList = []
 let ecode = ''
+let pyMode = false
 let fcode = ''
 let index = new Array(total); // 字根队列
 let count = new Array(total); // 字根答对次数
@@ -38,25 +39,29 @@ let count = new Array(total); // 字根答对次数
 getProgress();
 
 function checkChar() {
-    $('.box4').html(nowOrdata.diff.split('〔')[0])
+    let tstring = nowOrdata.diff.split('〔')[1]
+    tstring = tstring.replace(/\s*/g,"");
+    $('.box4').html(nowOrdata.diff.split('〔')[0] + '<br>' + tstring.substr(0, tstring.length-1))
     $('.box4').addClass('text-sm')
 }
 function checkCode() {
-    let tstring = nowOrdata.diff.split('〔')[1]
-    $('.box3').html(tstring.substr(0, tstring.length-1)+'<br>' + nowOrdata.code
-        
-    )
+    $('.box3').html(nowOrdata.code)
     $('.box3').addClass('text-sm2')
+}
+function changePyMode() {
+    pyMode = !pyMode
+    
+    if (pyMode)
+    $('#py').html(nowOrdata.py)
+    else {
+        $('#py').html('')
+    
+}
 }
 function inputChanged() {
     // 只要有空格就是错的
     let value = input.value
-    if (input.value.indexOf(' ') > -1) {
-        checkChar()
-        checkCode()
-        $('#input').val('')
-        return
-    }
+
     if (codeMode) {
         if (value == fcode) {
             count[0]++;
@@ -70,11 +75,24 @@ function inputChanged() {
                 count[0]++;
                 nowIndex++;
                 nextRoot();
+                return
             }
     
     
         }
+        if (input.value.indexOf(' ') > -1) {
+            checkChar()
+            checkCode()
+            $('#input').val('')
+            return
+        }
     }else {
+        if (input.value.indexOf(' ') > -1) {
+            checkChar()
+            checkCode()
+            $('#input').val('')
+            return
+        }
         console.log(nowIndex,root_char[nowIndex] );
         if (value === root_char[nowIndex]) {
             nowIndex++;
@@ -146,10 +164,16 @@ function showQuest() // 显示问题
         key: root_char[nowIndex]
     }).then(res=>{
         nowOrdata = res.data.codeInfo
-        console.log(nowOrdata);
         rootEle.textContent = nowOrdata.org
+        console.log(pyMode);
+        if (pyMode)
+             $('#py').html(nowOrdata.py)
+
+        else {
+	        $('#py').html('')
+            
+        }
         let templist = nowOrdata.code.split(' ')
-        console.log(templist);
         codeList = templist
         if(templist[1]) {
             ecode = templist[1]

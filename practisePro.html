@@ -108,8 +108,12 @@
                 
                     <div class="floatright">
                       <span>
-                        &nbsp;当前:<strong id="cur">1</strong>&nbsp;总数:<strong id="all">241</strong>
+                        &nbsp;进度:<strong id="cur">1</strong>/<strong id="all">241</strong>
                       </span>
+                      <label onchange="changePyMode()">
+                        <input  type="checkbox" id="py_mode">
+                        显示拼音
+                      </label>
                       <label onchange="changeMainRoot()">
                         <input  type="checkbox" id="main-root">
                         仅练习编码
@@ -119,6 +123,8 @@
                 
                 </div>
                 <div class="center80">
+                  <p id="py"></p>
+
                     <p id="root">口〇</p>
                     <p id="code"></p>
             
@@ -137,6 +143,7 @@
                       <div class="title">查看编码</div>
                     </div>
                   </div>
+                  <p class="tips">提示：1.按空格可快速显示答案。<br> 2.勾选右上选项开启纯编码模式。</p>
                 
                 </div>
             </div>
@@ -190,7 +197,12 @@
     text-align: center;
     width: 100%;
 }
-
+.tips {
+  margin-top: 20px;
+  font-size: 15px;
+  color:#f57b09;
+  font-weight: 600;
+}
 #code {
     margin: auto;
     font-size: 3.5rem;
