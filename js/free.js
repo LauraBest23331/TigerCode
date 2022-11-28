@@ -21,7 +21,7 @@ let showText = '欢迎使用虎码在线练习程序，点击上面载文按钮�
 // let showText = '测试'
 let inputText = ''
 let AllText = ''
-let nowRow = -1
+let nowRow = 0
 let MaxRow = -1
 let errorCount = 0
 let nextWord = ''
@@ -29,6 +29,15 @@ let nextWord = ''
 // initCounter(); // 初始化进度
 // showQuest();
 create()
+let speed_time_out = null
+let beginDate = new Date()
+let nowData = null;
+let diff
+let rightCount = 0
+let speed 
+let inputCount = 0
+nextWord = showText[0]
+let logInfo = []
 function create() {
     $('.show_text').html(showText)
     
@@ -114,8 +123,22 @@ function checkCode() {
     )
     $('.box3').addClass('text-sm2')
 }
+function stopSpeed() {
+    if (speed_time_out != null) {
+        clearInterval(speed_time_out)
+        speed_time_out = null
+        $('#speed').html('')
+        inputCount = 0
+    }
+}
 function loadArical(e) {
     nextWord = e[0]
+    checkChar()
+    checkCode()
+    stopSpeed()
+    $('#backspace').html(errorCount)
+    $('#cnumber').html(nowRow+1)
+    $('#input').val('')
     if (!codeMode) {
         $('.show_text').html(e)
         $('#mpreocess').html(100)
@@ -129,7 +152,7 @@ function loadArical(e) {
         MaxRow = Math.trunc(e.length/10 ) 
         nowRow = 0
         $('.show_text').html(e.substr(0, 10))
-        $('#mpreocess').html((nowRow / MaxRow * 100).toFixed(2))
+        $('#mpreocess').html((nowRow+1 / MaxRow * 100).toFixed(2))
         showText = e.substr(0, 10)
     }
 
@@ -139,38 +162,7 @@ function checkChar() {
         key: nextWord
     }).then(res=>{
         nowOrdata = res.data.codeInfo
-        console.log(nowOrdata);
         let templist = nowOrdata.code.split(' ')
-        console.log(templist);
-        codeList = templist
-        if(templist[1]) {
-            ecode = templist[1]
-        }
-        if(templist[0]) {
-            fcode = templist[0]
-        }
-        if(templist.length == 1) {
-            fcode = templist[0]
-        }else if (templist.length == 2) {
-                ecode = templist[0]
-                fcode = templist[1]
-        }
-
-        $('.box4').html(nowOrdata.diff.split('〔')[0])
-        $('.box4').addClass('text-sm')
-        errorCount++
-
-    })
-}
-
-function checkCode() {
-    axios.post(host + '/api/diction/search', {
-        key: nextWord
-    }).then(res=>{
-        nowOrdata = res.data.codeInfo
-        console.log(nowOrdata);
-        let templist = nowOrdata.code.split(' ')
-        console.log(templist);
         codeList = templist
         if(templist[1]) {
             ecode = templist[1]
@@ -185,10 +177,38 @@ function checkCode() {
                 fcode = templist[1]
         }
         let tstring = nowOrdata.diff.split('〔')[1]
-        $('.box3').html(tstring.substr(0, tstring.length-1)+'<br>' + nowOrdata.code)
-        errorCount++
+        tstring = tstring.replace(/\s*/g,"");
+        $('.box4').html(nowOrdata.diff.split('〔')[0] + '<br>' + tstring.substr(0, tstring.length-1))
+        $('.box4').addClass('text-sm')
 
+
+
+    })
+}
+
+function checkCode() {
+    axios.post(host + '/api/diction/search', {
+        key: nextWord
+    }).then(res=>{
+        nowOrdata = res.data.codeInfo
+        let templist = nowOrdata.code.split(' ')
+        codeList = templist
+        if(templist[1]) {
+            ecode = templist[1]
+        }
+        if(templist[0]) {
+            fcode = templist[0]
+        }
+        if(templist.length == 1) {
+            fcode = templist[0]
+        }else if (templist.length == 2) {
+                ecode = templist[0]
+                fcode = templist[1]
+        }
+        $('.box3').html(nowOrdata.code)
         $('.box3').addClass('text-sm2')
+
+
 
     })
 }
@@ -198,6 +218,8 @@ function nextRow() {
     if (nowRow >   MaxRow) {
         alert('练习结束')
         $('#input').val('')
+        stopSpeed()
+
         $('.show_text').html('欢迎使用虎码在线练习程序，点击上面载文按钮进行载入剪贴板或者选文按钮载入预设的文章。')
         return
     }
@@ -209,15 +231,42 @@ function nextRow() {
     $('.show_text').html(showText)
     $('#cnumber').html(nowRow+1)
     $('#input').val('')
+    stopSpeed()
 
 }
 function reRow() {
+    stopSpeed()
+
     showText = trans(showText)
     $('.show_text').html(showText)
     $('#input').val('')
 
     $('#backspace').html(errorCount)
 
+
+}
+function addLog() {
+    let _logInfo = logInfo
+    _logInfo.push({
+        num: nowRow+1,
+        speed: speed,
+        time: (diff/1000).toFixed(2),
+        backCount: errorCount
+    })
+    let log_body = ''
+    for (let i = 0; i < _logInfo.length; i++) {
+        $('.log_item')
+        log_body += `
+        <div class="log_item">
+        <div>${i+1}</div>
+        <div>${_logInfo[i].speed}</div>
+        <div>${_logInfo[i].time}</div>
+        <div>${_logInfo[i].backCount}</div>
+      </div>
+        `
+    }
+    _logInfo = _logInfo.reverse()
+    $('.log_body').html(log_body)
 }
 function loadText() {
     let text = $('#message_text').val()
@@ -234,7 +283,7 @@ $("#input").keydown(function(event){
     }
 });
 
-
+let timer = null
 function inputChanged() {
     // 只要有空格就是错的
     let value = input.value
@@ -242,17 +291,30 @@ function inputChanged() {
     let lastWord = value.substr(value.length-1, value.length)
     // console.log(value.substr(value.length-1, value.length))
     if (/^[a-zA-Z]+$/.test(lastWord)) {
-        console.log('char');
+
         return
     }
     let i = 0
-    $('.box4').html(`<div class="title">查看拆分</div>`)
+    inputCount++
+    if (speed_time_out == null) {
+        beginDate = new Date()
+
+        speed_time_out = setInterval(()=>{
+        nowData = new Date()
+        diff = nowData - beginDate
+        speed = (inputCount*60 / (diff / 1000)).toFixed(2) 
+        $('#speed').html(speed)
+    }, 10)
+    }
+    $('.box4').html(`<div class="title">拆分</div>`)
     $('.box4').removeClass('text-sm')
-    $('.box3').html('<div class="title">查看编码</div>')
+    $('.box3').html('<div class="title">编码</div>')
     $('.box3').removeClass('text-sm2')
+    rightCount = 0
     for (i = 0; i < value.length; i++) {
         if (value[i] == showText[i]) {
             tempSpanText += `<span style="background-color:#707070;float;">${showText[i]}</span>`
+            rightCount++
         }
         if (value[i] != showText[i]) {
             tempSpanText += `<span style="background-color:#ff3030;float;">${showText[i]}</span>`
@@ -260,8 +322,11 @@ function inputChanged() {
         }
     }
     if (value.length >= showText.length) {
+        addLog()
+    stopSpeed()
+
         if (codeMode ) {
-            if (errorCount == 0) {
+            if (errorCount == 0 && rightCount == i) {
 
                 nextRow()
             return
@@ -282,6 +347,17 @@ function inputChanged() {
 
     tempText =tempSpanText + showText.substring(i, showText.length)
     nextWord = showText[i]
+    if (timer) {
+        clearTimeout(timer)
+      
+    }  timer = setTimeout(()=>{
+            checkChar()
+            checkCode()
+            timer = null
+        }, 1000)
+
+
+
     $('.show_text').html(tempText)
 
 }
